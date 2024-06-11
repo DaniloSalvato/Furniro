@@ -1,7 +1,11 @@
+import Certificate from "../components/GenericComponents/Certificate"
 
 const ShopPage = () => {
   return (
-    <div>ShopPage</div>
+    <>
+
+    <Certificate />
+    </>
   )
 }
 
