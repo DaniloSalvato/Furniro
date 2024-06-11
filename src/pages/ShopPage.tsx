@@ -1,12 +1,14 @@
-import Certificate from "../components/GenericComponents/Certificate"
+import Certificate from "../components/GenericComponents/Certificate";
+import Panel from "../components/GenericComponents/Panel";
+import { Page } from "../types/Page";
 
-const ShopPage = () => {
+const ShopPage = ({ page }: Page) => {
   return (
     <>
-
-    <Certificate />
+      <Panel page={page} />
+      <Certificate />
     </>
-  )
-}
+  );
+};
 
-export default ShopPage
+export default ShopPage;
