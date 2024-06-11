@@ -1,6 +1,6 @@
 const Certificate = () => {
   return (
-    <div className="flex w-full flex-wrap bg-customBeije-300 py-10">
+    <div className="flex w-full flex-wrap bg-customBeije-300 py-16">
       <div className="flex flex-1 justify-center items-center">
         <img src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/trophy.svg" alt="Trophy-icon" />
         <div className="pl-2 px-5">

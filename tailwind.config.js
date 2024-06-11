@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      blur: {
+        xs: '3px',
+      },
       fontFamily:{
         poppins: ['Poppins', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
