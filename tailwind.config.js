@@ -35,7 +35,9 @@ export default {
       },
       fontSize: {
         '4.5xl': '34px',
-
+      },
+      spacing: {
+        'card': '446px',
       }
     },
   },

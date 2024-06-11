@@ -9,26 +9,32 @@ const Footer = () => {
               400 University Drive Suite 200 Coral Gables, FL 33134 USA
             </p>
             <div className="flex">
-              <img
-                className="h-5 w-5 mr-7"
-                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/facebook.svg"
-                alt="facebook-icon"
-              />
-              <img
-                className="h-5 w-5 mr-7"
-                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/instagram.svg"
-                alt="instagram-icon"
-              />
-              <img
-                className="h-5 w-5 mr-7"
-                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/twitter.svg"
-                alt="x-icon"
-              />
-              <img
-                className="h-5 w-5 mr-7"
-                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/linkedin.svg"
-                alt="linkedin-icon"
-              />
+              <div className="flex h-8 w-8 mr-7 shadow-xl justify-center items-center rounded-full">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/facebook.svg"
+                  alt="facebook-icon"
+                />
+              </div>
+              <div className="flex h-8 w-8 mr-7 shadow-xl justify-center items-center rounded-full">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/instagram.svg"
+                  alt="instagram-icon"
+                />
+              </div>
+
+              <div className="flex h-8 w-8 mr-7 shadow-xl justify-center items-center rounded-full">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/twitter.svg"
+                  alt="x-icon"
+                />
+              </div>
+
+              <div className="flex h-8 w-8 mr-7 shadow-xl justify-center items-center rounded-full">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/linkedin.svg"
+                  alt="linkedin-icon"
+                />
+              </div>
             </div>
           </div>
 
@@ -65,9 +71,7 @@ const Footer = () => {
         </div>
 
         <div className="w-11/12">
-          <p className="text-left mt-8">
-            2023 furino. All rights reverved
-          </p>
+          <p className="text-left my-8">2023 furino. All rights reverved</p>
         </div>
       </div>
     </>
