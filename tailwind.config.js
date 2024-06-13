@@ -32,12 +32,14 @@ export default {
         'customBeije-500': '#F9F1E7',
         'customRed-500': '#E97171',
         'customGreen-500': '#2EC1AC',
+        'customPurple-500': '#816DFA',
       },
       fontSize: {
         '4.5xl': '34px',
       },
       spacing: {
         'card': '446px',
+        'single': '500px',
       }
     },
   },
