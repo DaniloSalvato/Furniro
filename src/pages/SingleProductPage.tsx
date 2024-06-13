@@ -1,8 +1,11 @@
+import ProductDetail from "../components/SingleProduct/ProductDetail";
 
 const SingleProductPage = () => {
   return (
-    <div>SingleProductPage</div>
-  )
-}
+    <main>
+      <ProductDetail />
+    </main>
+  );
+};
 
-export default SingleProductPage
+export default SingleProductPage;
