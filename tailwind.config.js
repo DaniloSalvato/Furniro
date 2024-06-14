@@ -40,6 +40,8 @@ export default {
       spacing: {
         'card': '446px',
         'single': '500px',
+        'cartW': '417px',
+        'cartH': '746px',
       }
     },
   },

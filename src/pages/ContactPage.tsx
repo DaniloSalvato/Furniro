@@ -1,6 +1,15 @@
-const ContactPage = () => {
+import Contacts from "../components/ContactComponents/Contacts"
+import Certificate from "../components/GenericComponents/Certificate"
+import Panel from "../components/GenericComponents/Panel"
+import { Page } from "../types/Page"
+
+const ContactPage = ({page}:Page) => {
   return (
-    <div>ContactPage</div>
+    <>
+    <Panel page={page}/>
+    <Contacts />
+    <Certificate />
+    </>
   )
 }
 
