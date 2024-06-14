@@ -11,7 +11,7 @@ const Panel = ({ page }: Page) => {
         />
         <div className="absolute w-full h-full top-0 left-0 flex flex-col items-center justify-center bg-white bg-opacity-50 text-black">
           <div>
-            <h1 className="font-poppins font-medium text-5xl mb-2">Shop</h1>
+            <h1 className="font-poppins font-medium text-5xl mb-2">{page}</h1>
           </div>
 
           <div className="flex">

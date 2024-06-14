@@ -5,7 +5,6 @@ import "./index.css"
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
 
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
@@ -14,6 +13,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ContactPage from "./pages/ContactPage";
 import ErrorPage from "./pages/ErrorPage";
 import SingleProductPage from "./pages/SingleProductPage";
+import { store } from "./redux/store";
 
 const router = createBrowserRouter([
   {
@@ -31,15 +31,15 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <CartPage />,
+        element: <CartPage page="Page" />,
       },
       {
         path: "checkout",
-        element: <CheckoutPage />,
+        element: <CheckoutPage page="Checkout" />,
       },
       {
         path: "contact",
-        element: <ContactPage />,
+        element: <ContactPage page="Contact" />,
       },
       {
         path: "/product/:id",

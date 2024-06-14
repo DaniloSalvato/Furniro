@@ -43,8 +43,8 @@ const Card = ({
   };
 
   return (
-    <Link to={`/product/${id}`}>
-      <section className="mx-auto w-fit group">
+    <section className="mx-auto w-fit group">
+      <Link to={`/product/${id}`}>
         <div className="relative max-w-72 max-h-card mb-7 overflow-hidden">
           <img className=" w-full" src={image} alt="image" />
 
@@ -124,8 +124,8 @@ const Card = ({
             </div>
           </div>
         </div>
-      </section>
-    </Link>
+      </Link>
+    </section>
   );
 };
 

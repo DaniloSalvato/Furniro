@@ -24,14 +24,15 @@ const cartSlice = createSlice({
       );
       if (existingProduct) {
         existingProduct.quantity += 1;
-        toast.success("Product Registered Successfully!!")
-        console.log('adicionado')
+        toast.success("Product quantity updated successfully!");
       } else {
         state.cart.push({ ...action.payload, quantity: 1 });
+        toast.success("Product added to cart successfully!");
       }
     },
     removeProduct: (state, action: PayloadAction<number>) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
+      toast.success("Product removed from cart successfully!");
     },
     updateQuantity: (
       state,
@@ -39,16 +40,22 @@ const cartSlice = createSlice({
     ) => {
       const product = state.cart.find((item) => item.id === action.payload.id);
       if (product) {
-        product.quantity = action.payload.quantity;
+        console.log(product.quantity);
+        product.quantity += action.payload.quantity;
+        
         if (product.quantity <= 0) {
           state.cart = state.cart.filter(
             (item) => item.id !== action.payload.id
           );
+          toast.success("Product removed from cart successfully!");
+        } else {
+          toast.success("Product quantity updated successfully!");
         }
       }
     },
     clearCart: (state) => {
       state.cart = [];
+      toast.success("Cart cleared successfully!");
     },
   },
 });
@@ -56,3 +63,6 @@ const cartSlice = createSlice({
 export const { addProduct, removeProduct, updateQuantity, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+
+

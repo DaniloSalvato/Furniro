@@ -16,7 +16,7 @@ const Path = ({ title }: PathProps) => {
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/arrow-right.svg"
           alt="arrow"
         />
-        <div className="pl-5 text-black border-l border-l-black">{title}</div>
+        <div className="pl-5 ml-5 text-black border-l border-l-black">{title}</div>
       </div>
     </div>
   );
