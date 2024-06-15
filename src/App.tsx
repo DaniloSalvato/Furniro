@@ -3,8 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -13,7 +12,6 @@ const App = () => {
       <Outlet />
       <ToastContainer position="top-center" />
       <Footer />
-      
     </div>
   );
 };

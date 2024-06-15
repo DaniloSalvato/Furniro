@@ -1,15 +1,14 @@
-
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { ProductFull } from "../../types/Product";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { billingSchema, BillingData } from "../../schemas/billingSchema";
 import { toast } from "react-toastify";
+import { Item } from "../../types/Item";
+import { RootState } from "../../types";
 
 const BillingDetails = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.cart);
+  const { cartItems } = useSelector((state: RootState) => state.cart);
   const totalAmount = cartItems.reduce((total, item) => {
     return total + item.value * item.quantity;
   }, 0);
@@ -24,7 +23,7 @@ const BillingDetails = () => {
     formState: { errors },
   } = useForm<BillingData>({
     resolver: zodResolver(billingSchema),
-    mode: "onSubmit"
+    mode: "onSubmit",
   });
 
   const onSubmit = (data: BillingData) => {
@@ -216,7 +215,7 @@ const BillingDetails = () => {
             </div>
 
             <div>
-              {cartItems.map((item: ProductFull) => (
+              {cartItems.map((item: Item) => (
                 <div key={item.id} className="flex w-full flex-col">
                   <div className="flex justify-between">
                     <div className="flex justify-center items-center gap-3 mb-5">

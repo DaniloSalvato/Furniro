@@ -1,4 +1,4 @@
-import { Product } from "../../types/Product";
+import { Item } from "../../types/Item";
 import Description from "./Description";
 import Exhibition from "./Exhibition";
 import Info from "./Info";
@@ -18,7 +18,8 @@ const Details = ({
     sku,
     category,
     tags,
-}: Product) => {
+    quantity
+}: Item) => {
   return (
     <main className="flex flex-col h-full">
       <section className="flex w-full h-full p-16 border-b border-b-customBlack-950">
@@ -38,6 +39,7 @@ const Details = ({
             sku={sku}
             category={category}
             tags={tags}
+            quantity={quantity}
           />
         </article>
         <article className="flex-1 ">
@@ -56,6 +58,7 @@ const Details = ({
             sku={sku}
             category={category}
             tags={tags}
+            quantity={quantity}
           />
         </article>
       </section>

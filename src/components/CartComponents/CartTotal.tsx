@@ -1,12 +1,14 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Product } from "../../types/Product";
+import { RootState } from "../../types";
 
-type TotalProps = {
-  totalAmount: number;
-  cartItems: Product[];
-};
+const CartTotal = () => {
+  const {cartItems} = useSelector((state: RootState) => state.cart);
 
-const CartTotal = ({ totalAmount, cartItems }: TotalProps) => {
+  const totalAmount = cartItems.reduce((total, item) => {
+    return total + item.value * item.quantity;
+  }, 0);
+
   return (
     <div className="flex w-full flex-col justify-center items-center pt-4 pb-12 bg-customBeije-500">
       <h1 className="font-poppins font-semibold text-3xl">Cart Total</h1>
@@ -21,7 +23,7 @@ const CartTotal = ({ totalAmount, cartItems }: TotalProps) => {
                 key={item.id}
                 className="flex font-poppins font-normal text-base text-customBlack-800"
               >
-                {item.value}
+                {item.value * item.quantity}
               </p>
             ))}
           </div>

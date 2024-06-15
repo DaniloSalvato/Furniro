@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
-import { Product } from "../../types/Product";
-import { getProducts } from "../../service";
+import { useState } from "react";
+
 import Card from "../GenericComponents/Card";
+import { Item } from "../../types/Item";
+import { useSelector } from "react-redux";
+import { selectItems } from "../../redux/Item/itemReducer";
+
 
 const Products = () => {
   const productsPerPage = 16;
-  const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { items } = useSelector(selectItems);
+  
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  const currentProducts = items.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(items.length / productsPerPage);
 
   const goToNextPage = () => {
     if (currentPage < totalPages) {
@@ -27,17 +29,14 @@ const Products = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    getProducts({ setProducts });
-  }, []);
   return (
     <div className="w-full flex flex-col justify-center items-center">
       <h1 className="font-poppins font-bold text-4xl text-center text-customBlack-500 mt-12 mb-10">
         Our Products
       </h1>
       <div className="max-w-screen-xl gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center">
-        {products &&
-          currentProducts.map((product: Product) => (
+        {items &&
+          currentProducts.map((product: Item) => (
             <Card
               key={product.id}
               id={product.id}
@@ -54,6 +53,7 @@ const Products = () => {
               sku={product.sku}
               category={product.category}
               tags={product.tags}
+              quantity={product.quantity}
             />
           ))}
       </div>

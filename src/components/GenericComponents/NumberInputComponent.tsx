@@ -1,14 +1,19 @@
+import { useDispatch } from "react-redux";
+import { updateToCart } from "../../redux/Cart/cartActions";
+
 interface NumberInputComponentProps {
   id: number;
-  quantity?: number;
+  quantity?:number
   newQuantity: number;
   setNewQuantity: (e: number) => void;
 }
 
 const NumberInputComponent = ({
+  id,
   newQuantity,
   setNewQuantity,
 }: NumberInputComponentProps) => {
+  const dispatch = useDispatch();
   const increment = () => {
     const updatedQuantity = newQuantity + 1;
     setNewQuantity(updatedQuantity);
@@ -23,8 +28,10 @@ const NumberInputComponent = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
+
     if (!isNaN(value) && value >= 1) {
       setNewQuantity(value);
+      dispatch(updateToCart(id, value));
     }
   };
 

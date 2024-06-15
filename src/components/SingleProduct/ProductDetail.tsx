@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../types/Product";
-import { getProductById } from "../../service";
 
 import Path from "./Path";
 import Details from "./Details";
 import Related from "./Related";
+import { useSelector } from "react-redux";
+import { selectItems } from "../../redux/Item/itemReducer";
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState<Product | null>(null);
-  const param = useParams();
-  const paramId = Number(param.id);
+  const { id } = useParams();
 
-  useEffect(() => {
-    getProductById({ setProduct, paramId });
-  }, []);
+  const {items} = useSelector(selectItems)
 
-  if (!product) {
+  const singleItem = items.find((item) => item.id === Number(id));
+
+  if (!singleItem) {
     return (
       <p className="text-center font-montserrat text-4xl font-bold h-screen mt-48">
         Loading...
@@ -25,22 +23,23 @@ const ProductDetail = () => {
   }
   return (
     <div className="flex flex-col">
-      <Path title={product.title} />
-      <Details 
-      id={product.id} 
-      title={product.title} 
-      subtitle={product.subtitle}
-      about={product.about}
-      description={product.description} 
-      image={product.image} 
-      star={product.star}
-      value={product.value} 
-      inSale={product.inSale} 
-      percentage={product.percentage} 
-      isNew={product.isNew} 
-      sku={product.sku}
-      category={product.category}
-      tags={product.tags}
+      <Path title={singleItem.title} />
+
+      <Details
+        id={singleItem.id}
+        title={singleItem.title}
+        subtitle={singleItem.subtitle}
+        about={singleItem.about}
+        description={singleItem.description}
+        image={singleItem.image}
+        star={singleItem.star}
+        value={singleItem.value}
+        inSale={singleItem.inSale}
+        percentage={singleItem.percentage}
+        isNew={singleItem.isNew}
+        sku={singleItem.sku}
+        category={singleItem.category}
+        tags={singleItem.tags}
       />
       <Related />
     </div>
