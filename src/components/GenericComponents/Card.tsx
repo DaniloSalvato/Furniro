@@ -1,51 +1,39 @@
 import { useDispatch } from "react-redux";
-import { Product } from "../../types/Product";
-
-import { addProduct } from "../../redux/Cart/cartSlice";
+import { addToCart } from "../../redux/Cart/cartActions";
 import { Link } from "react-router-dom";
+import { Item } from "../../types/Item";
 
-const Card = ({
-  id,
-  title,
-  subtitle,
-  about,
-  description,
-  image,
-  star,
-  value,
-  inSale,
-  percentage,
-  isNew,
-  sku,
-  category,
-  tags,
-}: Product) => {
-  const dispatch = useDispatch();
+const Card = ({id,title,subtitle,description,about,image,star,value,inSale,percentage,isNew,sku,category,tags,quantity}: Item) => {
 
-  const handleAddProduct = () => {
-    const product: Product = {
-      id,
-      title,
-      subtitle,
-      about,
-      description,
-      image,
-      star,
-      value,
-      inSale,
-      percentage,
-      isNew,
-      sku,
-      category,
-      tags,
-    };
-    dispatch(addProduct(product));
+const dispatch = useDispatch();
+
+const handleAddToCart = () => {
+  
+  const item = {
+    id,
+    title,
+    subtitle,
+    description,
+    about,
+    image,
+    star,
+    value,
+    inSale,
+    percentage,
+    isNew,
+    sku,
+    category,
+    tags,
+    quantity
   };
+  console.log(item)
+  dispatch(addToCart(item));
+};
 
   return (
     <section className="mx-auto w-fit group">
-      <Link to={`/product/${id}`}>
-        <div className="relative max-w-72 max-h-card mb-7 overflow-hidden">
+      <div className="relative max-w-72 max-h-card mb-7 overflow-hidden">
+        <Link to={`/product/${id}`}>
           <img className=" w-full" src={image} alt="image" />
 
           <div className="absolute top-5 right-5">
@@ -91,40 +79,41 @@ const Card = ({
                 </p>
               )}
             </div>
-            <div className="absolute flex flex-col inset-0 justify-center items-center hover:bg-black/70 -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <button
-                className="bg-white text-customYellow-900 px-5 py-2 border border-black"
-                onClick={handleAddProduct}
-              >
-                Add to cart
-              </button>
-              <div className="flex mt-6">
-                <div className="flex cursor-pointer">
-                  <img
-                    src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/share.svg"
-                    alt="Share-icon"
-                  />
-                  <p className="text-white ml-1 cursor-pointer">Share</p>
-                </div>
-                <div className="flex ml-3 cursor-pointer">
-                  <img
-                    src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/compare.svg"
-                    alt="Compare-icon"
-                  />
-                  <p className="text-white ml-1 cursor-pointer">Compare</p>
-                </div>
-                <div className="flex ml-3 cursor-pointer">
-                  <img
-                    src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/like.svg"
-                    alt="Like-icon"
-                  />
-                  <p className="text-white ml-1 cursor-pointer">Like</p>
-                </div>
+          </div>
+
+          <div className="absolute flex flex-col inset-0 justify-center items-center hover:bg-black/70 -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <button
+              className="bg-white text-customYellow-900 px-5 py-2 border border-black z-50"
+              onClick={handleAddToCart}
+            >
+              Add to cart
+            </button>
+            <div className="flex mt-6">
+              <div className="flex cursor-pointer">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/share.svg"
+                  alt="Share-icon"
+                />
+                <p className="text-white ml-1 cursor-pointer">Share</p>
+              </div>
+              <div className="flex ml-3 cursor-pointer">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/compare.svg"
+                  alt="Compare-icon"
+                />
+                <p className="text-white ml-1 cursor-pointer">Compare</p>
+              </div>
+              <div className="flex ml-3 cursor-pointer">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/like.svg"
+                  alt="Like-icon"
+                />
+                <p className="text-white ml-1 cursor-pointer">Like</p>
               </div>
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </section>
   );
 };

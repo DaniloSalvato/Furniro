@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { RootState } from "../redux/store";
+import { selectCartItems } from "../redux/Cart/cartReducer";
 import Cart from "./CartComponents/Cart";
+import { Item } from "../types/Item";
 
 const Navbar = () => {
   const [navBarExpanded, setNavBarExpanded] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const cartItems = useSelector((state: RootState) => state.cart.cart);
+  const { cartItems } = useSelector(selectCartItems);
 
-  const totalAmount = cartItems.reduce((total, item) => {
-    return total + item.value * item.quantity;
-  }, 0);
+  // const totalAmount = cartItems.reduce((total, item) => {
+  //   return total + item.value * item.quantity;
+  // }, 0);
 
   const handleMenuBtnClick = () => {
     setNavBarExpanded((prevState) => !prevState);
@@ -122,15 +123,30 @@ const Navbar = () => {
                 />
               </div>
               <div className="flex flex-col justify-center items-center mt-4 mb-5 pb-5 ">
-                {cartItems.map((item) => (
-                  <Cart
-                    id={item.id}
-                    title={item.title}
-                    image={item.image}
-                    value={item.value}
-                    quantity={item.quantity}
-                  />
-                ))}
+                {cartItems ? (
+                  cartItems.map((item: Item) => (
+                    <Cart
+                      key={item.id}
+                      id={item.id}
+                      title={item.title}
+                      subtitle={item.subtitle}
+                      about={item.about}
+                      description={item.description}
+                      image={item.image}
+                      star={item.star}
+                      value={item.value}
+                      inSale={item.inSale}
+                      percentage={item.percentage}
+                      isNew={item.isNew}
+                      sku={item.sku}
+                      category={item.category}
+                      tags={item.tags}
+                      quantity={item.quantity}
+                    />
+                  ))
+                ) : (
+                  <p className="text-gray-500">Your cart is empty</p>
+                )}
               </div>
 
               <div className="flex mt-4 mx-2 ">
@@ -139,23 +155,32 @@ const Navbar = () => {
                 </p>
 
                 <p className="font-poppins font-semibold text-base text-customYellow-900 ml-32">
-                  ${totalAmount}
+                  {/* ${totalAmount} */}
                 </p>
               </div>
 
               <div className="flex mt-4 mx-2 justify-between">
                 <Link to={"cart"}>
-                  <button onClick={handleCartClick} className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full">
+                  <button
+                    onClick={handleCartClick}
+                    className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full"
+                  >
                     Cart
                   </button>
                 </Link>
                 <Link to={"checkout"}>
-                  <button onClick={handleCartClick} className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full">
+                  <button
+                    onClick={handleCartClick}
+                    className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full"
+                  >
                     Checkout
                   </button>
                 </Link>
 
-                <button onClick={handleCartClick} className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full">
+                <button
+                  onClick={handleCartClick}
+                  className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full"
+                >
                   Comparison
                 </button>
               </div>

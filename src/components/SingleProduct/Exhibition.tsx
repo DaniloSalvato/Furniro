@@ -1,8 +1,8 @@
-import { Product } from "../../types/Product";
+import { Item } from "../../types/Item";
 
 const Exhibition = ({
   image,
-}: Product) => {
+}: Item) => {
   return (
     <div className="flex w-full h-full my-8">
       <div className="flex flex-col gap-8 w-1/4 h-full justify-start items-center">

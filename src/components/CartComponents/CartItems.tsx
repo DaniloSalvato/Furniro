@@ -1,19 +1,17 @@
-// import { useDispatch, useSelector } from "react-redux";
-import {  ProductFull } from "../../types/Product";
-// import {
-//   addProduct,
-//   removeProduct,
-//   updateQuantity,
-// } from "../../redux/Cart/cartSlice";
-// import NumberInputComponent from "../GenericComponents/NumberInputComponent";
-// import { useState } from "react";
-// import { RootState } from "../../redux/store";
+import { useState } from "react";
+import { Item } from "../../types/Item";
+import NumberInputComponent from "../GenericComponents/NumberInputComponent";
+import { removeFromCart } from "../../redux/Cart/cartActions";
+import { useDispatch } from "react-redux";
 
 type CartItemProps = {
-  cartItem: ProductFull[];
+  cartItem: Item[];
 };
 
 const CartItems = ({ cartItem }: CartItemProps) => {
+  const [newQuantity,setNewQuantity] = useState(1)
+
+  const dispatch = useDispatch()
   return (
     <div className="grid grid-cols-6 w-full items-center justify-center">
       <span className="col-start-1 py-3 text-transparent bg-customBeije-500">
@@ -38,7 +36,7 @@ const CartItems = ({ cartItem }: CartItemProps) => {
       {cartItem.map((item) => (
         <>
           <img
-            className="col-start-1 w-16 h-16 py-3 rounded-md "
+            className="col-start-1 w-12 py-3 rounded-lg"
             src={item.image}
             alt={item.title}
           />
@@ -51,17 +49,16 @@ const CartItems = ({ cartItem }: CartItemProps) => {
           </span>
 
           <span className="col-start-4">
-            {item.quantity}
-            {/* <NumberInputComponent
+            <NumberInputComponent
               id={item.id}
               newQuantity={newQuantity}
               setNewQuantity={setNewQuantity}
-            /> */}
+            />
           </span>
 
           <span className="col-start-5">{item.value * item.quantity}</span>
           <img
-            // onClick={() => dispatch(removeProduct(item.id))}
+             onClick={() => dispatch(removeFromCart(item.id))}
             src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/trash.svg"
             alt="trash"
             className="col-start-6 h-5 w-5 text-center"

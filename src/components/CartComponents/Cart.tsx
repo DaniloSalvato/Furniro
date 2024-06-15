@@ -1,11 +1,9 @@
-
-import { removeProduct } from "../../redux/Cart/cartSlice";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store";
-import { CartProps } from "../../types/Cart";
+import { Item } from "../../types/Item";
+import { removeFromCart } from "../../redux/Cart/cartActions";
 
-const Cart = ({ id, title, image, value, quantity }: CartProps) => {
-  const dispatch: AppDispatch = useDispatch();
+const Cart = ({ id, title, image, value, quantity }: Item) => {
+  const dispatch = useDispatch()
   return (
     <div className="flex w-4/5 py-6 ml-4 justify-between items-center">
       <img
@@ -28,7 +26,9 @@ const Cart = ({ id, title, image, value, quantity }: CartProps) => {
       </div>
 
       <div>
-        <button onClick={() => dispatch(removeProduct(id))}>
+        <button
+        onClick={() => dispatch(removeFromCart(id))}
+        >
           <img
             src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/x.svg"
             alt="remover-icon"

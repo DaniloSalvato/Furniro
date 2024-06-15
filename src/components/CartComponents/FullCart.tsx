@@ -1,14 +1,11 @@
 import { useSelector } from "react-redux";
-import CartTotal from "./CartTotal";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../types";
 import CartItems from "./CartItems";
+import CartTotal from "./CartTotal";
+
 
 const FullCart = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.cart);
-
-  const totalAmount = cartItems.reduce((total, item) => {
-    return total + item.value * item.quantity;
-  }, 0);
+  const {cartItems} = useSelector((state: RootState) => state.cart);
 
   return (
     <div className="flex w-full justify-center items-center my-16 ">
@@ -17,7 +14,7 @@ const FullCart = () => {
             <CartItems cartItem={cartItems}/>
         </div>
         <div className="flex flex-col w-2/6 ">
-          <CartTotal totalAmount={totalAmount} cartItems={cartItems} />
+          <CartTotal />
         </div>
       </div>
     </div>
