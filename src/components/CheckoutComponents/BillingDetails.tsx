@@ -5,13 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { billingSchema, BillingData } from "../../schemas/billingSchema";
 import { toast } from "react-toastify";
 import { Item } from "../../types/Item";
-import { RootState } from "../../types";
+import { RootState } from "../../redux/reducers";
+import { formatRupiah, totalAmount } from "../../utils/utils";
 
 const BillingDetails = () => {
+
   const { cartItems } = useSelector((state: RootState) => state.cart);
-  const totalAmount = cartItems.reduce((total, item) => {
-    return total + item.value * item.quantity;
-  }, 0);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -45,9 +44,9 @@ const BillingDetails = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <main className="flex w-full h-full">
+      <main className="flex flex-col md:flex-row w-full h-full">
         <section className="flex flex-1 justify-center items-center">
-          <div className="w-2/5">
+          <div className="w-4/5 md:w-2/5">
             <h1 className="font-poppins font-semibold text-4xl mt-20">
               Billing details
             </h1>
@@ -180,7 +179,7 @@ const BillingDetails = () => {
               <input
                 id="email"
                 {...register("email")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-5 mb-5"
                 type="text"
               />
               {errors.email && (
@@ -189,16 +188,11 @@ const BillingDetails = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="additionalInfo"
-                className="font-poppins font-medium text-base mt-5"
-              >
-                Additional information
-              </label>
               <input
                 id="additionalInfo"
                 {...register("additionalInfo")}
-                className="border w-full h-12 rounded-md mt-10 mb-20"
+                placeholder="Additional information"
+                className="border w-full h-12 rounded-md mt-5 mb-20 font-poppins font-normal text-base"
                 type="text"
               />
             </div>
@@ -206,7 +200,7 @@ const BillingDetails = () => {
         </section>
 
         <section className="flex flex-1 justify-center items-center">
-          <div className="w-4/5 h-full pt-28">
+          <div className="w-4/5 h-full md:pt-28">
             <div className="flex justify-between mb-5">
               <span className="font-poppins font-medium text-2xl">Product</span>
               <span className="font-poppins font-medium text-2xl">
@@ -231,7 +225,7 @@ const BillingDetails = () => {
                     </div>
                     <div>
                       <span className="font-poppins font-light text-base mb-5">
-                        {item.value * item.quantity}
+                        {formatRupiah(item.value * item.quantity)}
                       </span>
                     </div>
                   </div>
@@ -242,7 +236,7 @@ const BillingDetails = () => {
                   Subtotal
                 </span>
                 <span className="font-poppins font-light text-base">
-                  {totalAmount}
+                  {formatRupiah(totalAmount(cartItems))}
                 </span>
               </div>
 
@@ -251,7 +245,7 @@ const BillingDetails = () => {
                   Total
                 </span>
                 <span className="font-poppins font-bold text-2xl text-customYellow-900">
-                  {totalAmount}
+                  {formatRupiah(totalAmount(cartItems))}
                 </span>
               </div>
 
@@ -308,8 +302,8 @@ const BillingDetails = () => {
                 </p>
               </div>
 
-              <div className="flex justify-center items-center mt-10 font-poppins font-normal text-xl">
-                <button className="border border-black px-28 py-5 rounded-2xl">
+              <div className="flex justify-center items-center mt-10 mb-10 md:mb-0 font-poppins font-normal text-xl">
+                <button className="border border-black px-14 md:px-28 py-5 rounded-2xl">
                   Place order
                 </button>
               </div>

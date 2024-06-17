@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/reducers";
 import { Link, NavLink } from "react-router-dom";
-import { selectCartItems } from "../redux/Cart/cartReducer";
-import Cart from "./CartComponents/Cart";
 import { Item } from "../types/Item";
+
+import Cart from "./CartComponents/Cart";
+import { formatRupiah, totalAmount } from "../utils/utils";
 
 const Navbar = () => {
   const [navBarExpanded, setNavBarExpanded] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const { cartItems } = useSelector(selectCartItems);
+  const { cartItems } = useSelector((state:RootState) => state.cart);
 
-  // const totalAmount = cartItems.reduce((total, item) => {
-  //   return total + item.value * item.quantity;
-  // }, 0);
 
   const handleMenuBtnClick = () => {
     setNavBarExpanded((prevState) => !prevState);
@@ -155,7 +154,8 @@ const Navbar = () => {
                 </p>
 
                 <p className="font-poppins font-semibold text-base text-customYellow-900 ml-32">
-                  {/* ${totalAmount} */}
+           
+                  {formatRupiah(totalAmount(cartItems))}
                 </p>
               </div>
 

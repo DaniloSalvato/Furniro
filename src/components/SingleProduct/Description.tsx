@@ -1,6 +1,6 @@
-import { Product } from "../../types/Product";
+import { Item } from "../../types/Item";
 
-const Description = ({ description, image }: Product) => {
+const Description = ({ description, image }: Item) => {
   return (
     <>
       <div className="flex w-full justify-evenly items-center mb-12">

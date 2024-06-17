@@ -20,7 +20,7 @@ const Contacts = () => {
   };
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
-      <div className="flex flex-col w-2/5 justify-center items-center">
+      <div className="flex flex-col w-4/5 md:w-2/5 justify-center items-center">
         <h1 className="font-poppins font-semibold text-4xl mt-28">
           Get In Touch With Us
         </h1>
@@ -31,28 +31,63 @@ const Contacts = () => {
         </p>
       </div>
 
-      <div className="flex w-3/4 justify-center mt-20 gap-8">
-        <div className="flex-1 w-2/5">
+      <div className="flex flex-col md:flex-row w-4/5 md:w-3/4 lg:w-2/3 justify-center mt-20 ">
+        <div className="flex-1 w-11/12 md:w-2/5">
           <div>
-            <h4 className="font-poppins font-medium text-2xl">Address</h4>
-            <span className="font-poppins font-normal text-base ">
-              236 5th SE Avenue, New York NY10000, United States
-            </span>
-          </div>
-          <div className="mt-6">
-            <h4 className="font-poppins font-medium text-2xl">Phone</h4>
-            <div className="flex flex-col">
-              <span className="font-poppins font-normal text-base">
-                Mobile: +(84) 546-6789
-              </span>
-              <span className="font-poppins font-normal text-base">
-                Hotline: +(84) 456-6789
+            <div className="">
+              <img
+                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/pinpoint.svg"
+                alt=""
+                className=""
+              />
+              <div className="flex ml-5">
+                <h4 className="font-poppins font-medium text-2xl ml-6">
+                  Address
+                </h4>
+              </div >
+              <span className="flex font-poppins font-normal text-base ml-11 ">
+                236 5th SE Avenue, New <br /> York NY10000, United <br /> States
               </span>
             </div>
           </div>
-          <div className="mt-6">
-            <h4 className="font-poppins font-medium text-2xl">Working Time</h4>
-            <div className="flex flex-col">
+
+          <div>
+            <div className="flex-col mt-6">
+              <div className="flex">
+                <img
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/telephone.svg"
+                  alt=""
+                />
+
+                <h4 className="font-poppins font-medium text-2xl ml-5">
+                  Phone
+                </h4>
+              </div>
+
+              <div className="flex flex-col ml-11">
+                <span className="font-poppins font-normal text-base">
+                  Mobile: +(84) 546-6789
+                </span>
+
+                <span className="font-poppins font-normal text-base">
+                  Hotline: +(84) 456-6789
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="flex mt-6">
+              <img
+                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/clock.svg"
+                alt=""
+              />
+              <h4 className="font-poppins font-medium text-2xl  ml-5">
+                Working Time
+              </h4>
+            </div>
+
+            <div className="flex flex-col ml-11">
               <span className="font-poppins font-normal text-base ">
                 Monday-Friday: 9:00 - 22:00
               </span>
@@ -62,9 +97,9 @@ const Contacts = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1">
-          <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
-            <div className="mb-4">
+        <div className="flex flex-1">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full mx-auto">
+            <div className="mb-4 mt-10 md:mt-0">
               <label
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
@@ -74,7 +109,8 @@ const Contacts = () => {
               <input
                 id="name"
                 {...register("name")}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                placeholder="Abc"
+                className="mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.name && (
                 <p className="text-red-600 text-xs mt-1">
@@ -94,7 +130,8 @@ const Contacts = () => {
                 id="email"
                 {...register("email")}
                 type="email"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                placeholder="Abc@def.com"
+                className="mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.email && (
                 <p className="text-red-600 text-xs mt-1">
@@ -113,7 +150,8 @@ const Contacts = () => {
               <input
                 id="subject"
                 {...register("subject")}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                placeholder="This is an optional"
+                className="mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.subject && (
                 <p className="text-red-600 text-xs mt-1">
@@ -132,7 +170,8 @@ const Contacts = () => {
               <textarea
                 id="message"
                 {...register("message")}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                placeholder="Hi! i’d like to ask about"
+                className="mt-4 block w-full px-3 py-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.message && (
                 <p className="text-red-600 text-xs mt-1">
@@ -140,16 +179,16 @@ const Contacts = () => {
                 </p>
               )}
             </div>
+            <div className="flex mb-16 mt-12  justify-center md:justify-normal">
+              <button
+                type="submit"
+                className="font-poppins px-20 py-3 bg-customYellow-900 text-white font-light text-base rounded-md shadow-sm hover:bg-customYellow-900"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         </div>
-      </div>
-      <div className="mb-4 ">
-        <button
-          type="submit"
-          className=" px-4 py-2 bg-customYellow-900 text-white font-medium text-sm rounded-md shadow-sm hover:bg-customYellow-900"
-        >
-          Submit
-        </button>
       </div>
     </div>
   );

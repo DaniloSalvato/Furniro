@@ -13,30 +13,35 @@ export interface CartItem {
   sku: string;
   category: string;
   tags: string[];
-  quantity:number;
+  quantity: number;
 }
 
 export interface CartState {
   cartItems: CartItem[];
+  loading: boolean;
+  error: string | null;
 }
 
 export const ADD_TO_CART = "ADD_TO_CART";
-export const UPDATE_TO_CART = "UPDATE_TO_CART";
+export const UPDATE_CART = "UPDATE_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
-interface AddToCartAction {
+export interface AddToCartAction {
   type: typeof ADD_TO_CART;
   payload: CartItem;
 }
 
-interface UpdateToCartAction {
-  type: typeof UPDATE_TO_CART;
-  payload: {id: number, quantity: number}
+export interface UpdateCartAction {
+  type: typeof UPDATE_CART;
+  payload: { id: number; quantity: number };
 }
 
-interface RemoveFromCartAction {
+export interface RemoveFromCartAction {
   type: typeof REMOVE_FROM_CART;
   payload: { id: number };
 }
 
-export type CartActionTypes = AddToCartAction | UpdateToCartAction | RemoveFromCartAction;
+export type CartActionTypes =
+  | AddToCartAction
+  | UpdateCartAction
+  | RemoveFromCartAction;

@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Item } from "../../types/Item";
-import { updateToCart } from "../../redux/Cart/cartActions";
-import NumberInputComponent from "../GenericComponents/NumberInputComponent";
-import { useState } from "react";
+import { updateItemCart } from "../../redux/thunks/cart";
+import { formatRupiah } from "../../utils/utils";
+import NumberInput from "../GenericComponents/NumberInput";
+import Star from "./Star";
 
 const Info = ({
   id,
@@ -13,20 +15,26 @@ const Info = ({
   sku,
   category,
   tags,
+  quantity,
 }: Item) => {
-  const [newQuantity,setNewQuantity] = useState(1)
+  const [newQuantity, setNewQuantity] = useState(1);
+
   const dispatch = useDispatch();
 
+  const handleUpdateCart = (id: number, quantity: number) => {
+    dispatch(updateItemCart(id, quantity));
+  };
+
   return (
-    <div className="flex w-full h-full flex-col">
+    <div className="flex w-4/5 h-full flex-col">
       <h1 className="font-poppins font-normal text-4xl mt-11">{title}</h1>
       <p className="font-poppins font-medium text-2xl text-customBlack-800 mt-3">
-        ${value}
+        {formatRupiah(value)}
       </p>
       <div className="flex mt-3">
-        <img src="" alt={title} className="w-32 h-32 object-cover" />
-        <p className="font-poppins font-normal text-sm text-customBlack-800 ">
-          {star} Customer Review
+        <Star stars={star} />
+        <p className="font-poppins font-normal text-sm text-customBlack-800 ml-5">
+          Customer Review
         </p>
       </div>
       <p className="font-poppins font-normal text-sm text-black mt-3">
@@ -51,11 +59,14 @@ const Info = ({
         <div className="h-8 w-8 bg-customYellow-900 rounded-full"></div>
       </div>
       <div className="flex mt-4">
-        <NumberInputComponent id={id} newQuantity={newQuantity} setNewQuantity={setNewQuantity}  />
+        <NumberInput
+          id={id}
+          quantity={quantity}
+        />
 
         <button
           className=" ml-4 py-1 px-8 border border-black rounded-lg"
-          onClick={() => dispatch(updateToCart(id, newQuantity))}
+          onClick={() => handleUpdateCart(id, 4)}
         >
           Add To Cart
         </button>

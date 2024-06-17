@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'background-home': "url('https://furniro-ds.s3.us-east-2.amazonaws.com/utils/home-img.png')",
+        'background-panel': "url('https://furniro-ds.s3.us-east-2.amazonaws.com/utils/process-image.png')",
+      },
       blur: {
         xs: '3px',
       },

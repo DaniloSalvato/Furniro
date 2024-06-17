@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Item } from "../../types/Item";
-import { removeFromCart } from "../../redux/Cart/cartActions";
+import { removeItemFromCart } from "../../redux/thunks/cart";
 
 const Cart = ({ id, title, image, value, quantity }: Item) => {
   const dispatch = useDispatch()
@@ -20,14 +20,14 @@ const Cart = ({ id, title, image, value, quantity }: Item) => {
           </p>
           <p className="font-poppins font-light text-xs text-black">X</p>
           <p className="font-poppins font-medium text-xs text-customYellow-900">
-            ${(value * quantity).toFixed(2)}
+            Rp{(value * quantity).toFixed(2)}
           </p>
         </div>
       </div>
 
       <div>
         <button
-        onClick={() => dispatch(removeFromCart(id))}
+        onClick={() => dispatch(removeItemFromCart(id))}
         >
           <img
             src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/x.svg"

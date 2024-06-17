@@ -1,20 +1,20 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Path from "./Path";
 import Details from "./Details";
 import Related from "./Related";
 import { useSelector } from "react-redux";
-import { selectItems } from "../../redux/Item/itemReducer";
+import { RootState } from "../../redux/reducers";
 
 const ProductDetail = () => {
   const { id } = useParams();
 
-  const {items} = useSelector(selectItems)
+  const itemsState = useSelector((state: RootState) => state.items);
 
-  const singleItem = items.find((item) => item.id === Number(id));
+  const item = itemsState.items.find((item) => item.id === Number(id));
 
-  if (!singleItem) {
+  if (!item) {
     return (
       <p className="text-center font-montserrat text-4xl font-bold h-screen mt-48">
         Loading...
@@ -23,23 +23,24 @@ const ProductDetail = () => {
   }
   return (
     <div className="flex flex-col">
-      <Path title={singleItem.title} />
+      <Path title={item.title} />
 
       <Details
-        id={singleItem.id}
-        title={singleItem.title}
-        subtitle={singleItem.subtitle}
-        about={singleItem.about}
-        description={singleItem.description}
-        image={singleItem.image}
-        star={singleItem.star}
-        value={singleItem.value}
-        inSale={singleItem.inSale}
-        percentage={singleItem.percentage}
-        isNew={singleItem.isNew}
-        sku={singleItem.sku}
-        category={singleItem.category}
-        tags={singleItem.tags}
+        id={item.id}
+        title={item.title}
+        subtitle={item.subtitle}
+        about={item.about}
+        description={item.description}
+        image={item.image}
+        star={item.star}
+        value={item.value}
+        inSale={item.inSale}
+        percentage={item.percentage}
+        isNew={item.isNew}
+        sku={item.sku}
+        category={item.category}
+        tags={item.tags}
+        quantity={item.quantity}
       />
       <Related />
     </div>
