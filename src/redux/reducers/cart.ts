@@ -1,19 +1,21 @@
-import { RootState } from "../../types";
 import {
+  ADD_TO_CART,
   CartActionTypes,
   CartState,
-  ADD_TO_CART,
   REMOVE_FROM_CART,
-  UPDATE_TO_CART,
+  UPDATE_CART,
 } from "../../types/Cart";
 
 const initialState: CartState = {
   cartItems: [],
+  loading: false,
+  error: null,
 };
 
-export const selectCartItems = (state: RootState) => state.cart;
-
-const cartReducer = (state = initialState, action: CartActionTypes) => {
+const cartReducer = (
+  state = initialState,
+  action: CartActionTypes
+): CartState => {
   switch (action.type) {
     case ADD_TO_CART: {
       const item = action.payload;
@@ -37,7 +39,7 @@ const cartReducer = (state = initialState, action: CartActionTypes) => {
         };
       }
     }
-    case UPDATE_TO_CART: {
+    case UPDATE_CART: {
       return {
         ...state,
         cartItems: state.cartItems.map((cartItem) =>

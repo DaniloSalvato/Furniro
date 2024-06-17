@@ -13,7 +13,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ContactPage from "./pages/ContactPage";
 import ErrorPage from "./pages/ErrorPage";
 import SingleProductPage from "./pages/SingleProductPage";
-import { store, persister } from "./redux";
+import { store, persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 const router = createBrowserRouter([
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <CartPage page="Page" />,
+        element: <CartPage page="Cart" />,
       },
       {
         path: "checkout",
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persister}>
+      <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
       </PersistGate>
     </Provider>

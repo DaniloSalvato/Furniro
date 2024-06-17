@@ -1,34 +1,49 @@
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/Cart/cartActions";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/Item";
+import { addItemToCart } from "../../redux/thunks/cart";
 
-const Card = ({id,title,subtitle,description,about,image,star,value,inSale,percentage,isNew,sku,category,tags,quantity}: Item) => {
+import { formatRupiah } from "../../utils/utils";
 
-const dispatch = useDispatch();
+const Card = ({
+  id,
+  title,
+  subtitle,
+  description,
+  about,
+  image,
+  star,
+  value,
+  inSale,
+  percentage,
+  isNew,
+  sku,
+  category,
+  tags,
+  quantity,
+}: Item) => {
+  const dispatch = useDispatch();
 
-const handleAddToCart = () => {
-  
-  const item = {
-    id,
-    title,
-    subtitle,
-    description,
-    about,
-    image,
-    star,
-    value,
-    inSale,
-    percentage,
-    isNew,
-    sku,
-    category,
-    tags,
-    quantity
+  const handleAddToCart = () => {
+    const item = {
+      id,
+      title,
+      subtitle,
+      description,
+      about,
+      image,
+      star,
+      value,
+      inSale,
+      percentage,
+      isNew,
+      sku,
+      category,
+      tags,
+      quantity,
+    };
+    dispatch(addItemToCart(item));
   };
-  console.log(item)
-  dispatch(addToCart(item));
-};
 
   return (
     <section className="mx-auto w-fit group">
@@ -66,16 +81,16 @@ const handleAddToCart = () => {
             <div>
               {inSale ? (
                 <div className="flex gap-4 mt-2">
-                  <p className="font-poppins font-medium text-xl text-customBlack-500">
-                    ${(value * (1 - percentage / 100)).toFixed(2)}
+                  <p className="font-poppins font-semibold text-xl text-customBlack-500">
+                    {formatRupiah(value * (1 - percentage / 100))}
                   </p>
                   <p className="font-poppins font-regular text-base text-customWhite-100 line-through">
-                    ${value.toFixed(2)}
+                    {formatRupiah(value)}
                   </p>
                 </div>
               ) : (
                 <p className="font-poppins font-semibold text-xl text-customBlack-500 mt-2">
-                  ${value.toFixed(2)}
+                  {formatRupiah(value)}
                 </p>
               )}
             </div>

@@ -1,71 +1,73 @@
-import { useState } from "react";
-import { Item } from "../../types/Item";
-import NumberInputComponent from "../GenericComponents/NumberInputComponent";
-import { removeFromCart } from "../../redux/Cart/cartActions";
+
+import NumberInputComponent from "../GenericComponents/NumberInput";
 import { useDispatch } from "react-redux";
+import { removeItemFromCart } from "../../redux/thunks/cart";
+import { formatRupiah } from "../../utils/utils";
+import { RootState } from "../../redux/reducers";
+import { useSelector } from "react-redux";
 
-type CartItemProps = {
-  cartItem: Item[];
-};
+const CartItems = () => {
+  const {cartItems} = useSelector((state: RootState) => state.cart);
 
-const CartItems = ({ cartItem }: CartItemProps) => {
-  const [newQuantity,setNewQuantity] = useState(1)
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
-    <div className="grid grid-cols-6 w-full items-center justify-center">
-      <span className="col-start-1 py-3 text-transparent bg-customBeije-500">
-        space
-      </span>
-      <span className="col-start-2 py-3 font-poppins font-medium text-base bg-customBeije-500">
-        Product
-      </span>
-      <span className="col-start-3 py-3 font-poppins font-medium text-base bg-customBeije-500">
-        Price
-      </span>
-      <span className="col-start-4 py-3 font-poppins font-medium text-base bg-customBeije-500">
-        Quantity
-      </span>
-      <span className="col-start-5 py-3 font-poppins font-medium text-base bg-customBeije-500">
-        Subtotal
-      </span>
-      <span className="col-start-6 py-3 text-center text-transparent bg-customBeije-500">
-        trash
-      </span>
+    <>
+      <div className="grid grid-cols-5 w-full items-center justify-center bg-customBeije-500">
+        <p className="col-span-1 col-start-2 justify-items-end py-3 font-poppins font-medium text-base bg-customBeije-500 m-2">
+          Product
+        </p>
+        <p className="col-span-1 col-start-3 py-3 font-poppins font-medium text-base bg-customBeije-500 mx-4">
+          Price
+        </p>
+        <p className="col-span-1 col-start-4 py-3 font-poppins font-medium text-base bg-customBeije-500 mx-5">
+          Quantity
+        </p>
+        <p className="col-span-1 col-start-5 py-3 font-poppins font-medium text-base bg-customBeije-500 mx-5">
+          Subtotal
+        </p>
+        <p className="col-span-1 col-start-6 py-3 text-center text-transparent bg-customBeije-500 mx-6">
+          trash
+        </p>
+      </div>
 
-      {cartItem.map((item) => (
-        <>
-          <img
-            className="col-start-1 w-12 py-3 rounded-lg"
-            src={item.image}
-            alt={item.title}
-          />
-          <span className="col-start-2 font-normal text-base text-customBlack-800">
-            {item.title}
-          </span>
-
-          <span className="col-start-3 font-poppins font-normal text-base text-customBlack-800">
-            {item.value}
-          </span>
-
-          <span className="col-start-4">
-            <NumberInputComponent
-              id={item.id}
-              newQuantity={newQuantity}
-              setNewQuantity={setNewQuantity}
+      <div className="grid grid-cols-5 w-full items-center justify-center">
+        {cartItems.map((item) => (
+          <>
+            <img key={item.id}
+              className="col-span-1 col-start-1 w-20 h-20 rounded-lg m-2"
+              src={item.image}
+              alt={item.title}
             />
-          </span>
 
-          <span className="col-start-5">{item.value * item.quantity}</span>
-          <img
-             onClick={() => dispatch(removeFromCart(item.id))}
-            src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/trash.svg"
-            alt="trash"
-            className="col-start-6 h-5 w-5 text-center"
-          />
-        </>
-      ))}
-    </div>
+            <p className="col-start-2 font-normal text-base text-customBlack-800 m-2">
+              {item.title}
+            </p>
+
+            <p className="col-start-3 font-poppins font-normal text-base text-customBlack-800 m-2">
+              {formatRupiah(item.value)}
+            </p>
+
+            <p className="col-start-4 m-2">
+              <NumberInputComponent
+                id={item.id}
+                quantity={item.quantity}
+              />
+            </p>
+
+            <p className="col-start-5 m-2">
+              {formatRupiah(item.value * item.quantity)}
+            </p>
+
+            <img 
+              onClick={() => dispatch(removeItemFromCart(item.id))}
+              src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/trash.svg"
+              alt="trash"
+              className="col-start-6 h-5 w-5 m-6"
+            />
+          </>
+        ))}
+      </div>
+    </>
   );
 };
 

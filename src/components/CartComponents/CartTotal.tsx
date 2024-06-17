@@ -1,13 +1,10 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RootState } from "../../types";
+import { RootState } from "../../redux/reducers";
+import { formatRupiah, totalAmount } from "../../utils/utils";
 
 const CartTotal = () => {
-  const {cartItems} = useSelector((state: RootState) => state.cart);
-
-  const totalAmount = cartItems.reduce((total, item) => {
-    return total + item.value * item.quantity;
-  }, 0);
+  const { cartItems } = useSelector((state: RootState) => state.cart);
 
   return (
     <div className="flex w-full flex-col justify-center items-center pt-4 pb-12 bg-customBeije-500">
@@ -23,7 +20,7 @@ const CartTotal = () => {
                 key={item.id}
                 className="flex font-poppins font-normal text-base text-customBlack-800"
               >
-                {item.value * item.quantity}
+                {formatRupiah(item.value * item.quantity)}
               </p>
             ))}
           </div>
@@ -32,12 +29,12 @@ const CartTotal = () => {
         <div className="flex justify-evenly items-center mt-4 flex-wrap">
           <p className="font-poppins font-medium text-base">Total</p>
           <p className="font-poppins font-medium text-xl text-customYellow-900">
-            {totalAmount}
+            {formatRupiah(totalAmount(cartItems))}
           </p>
         </div>
       </div>
       <Link to={"/checkout"}>
-        <button className="py-2 px-8 my-4 border border-black rounded-lg">
+        <button className="py-2 mt-8 mb-8 px-8 my-4 border border-black rounded-lg">
           Check Out
         </button>
       </Link>
