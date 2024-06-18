@@ -25,29 +25,31 @@ export interface ItemState {
 export const FETCH_DATA_REQUEST = "FETCH_DATA_REQUEST";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 export const FETCH_DATA_FAILURE = "FETCH_DATA_FAILURE";
-export const UPDATE_ITEM = "UPDATE_ITEM";
 
-export interface FetchDataRequestAction {
-  type: typeof FETCH_DATA_REQUEST;
+export interface GenericAction<T = string, P = undefined> {
+  type: T;
+  payload?: P extends undefined ? never : P;
 }
 
-export interface FetchDataSuccessAction {
-  type: typeof FETCH_DATA_SUCCESS;
-  payload: Item[];
-}
+export type FetchDataRequestAction = GenericAction<typeof FETCH_DATA_REQUEST>;
+export type FetchDataSuccessAction = GenericAction<typeof FETCH_DATA_SUCCESS,Item[]>;
+export type FetchDataFailureAction = GenericAction<typeof FETCH_DATA_FAILURE,string>;
 
-export interface FetchDataFailureAction {
-  type: typeof FETCH_DATA_FAILURE;
-  payload: string;
-}
+// export interface FetchDataRequestAction {
+//   type: typeof FETCH_DATA_REQUEST;
+// }
 
-export interface UpdateItemAction {
-  type: typeof UPDATE_ITEM;
-  payload: { id: number; quantity: number };
-}
+// export interface FetchDataSuccessAction {
+//   type: typeof FETCH_DATA_SUCCESS;
+//   payload: Item[];
+// }
+
+// export interface FetchDataFailureAction {
+//   type: typeof FETCH_DATA_FAILURE;
+//   payload: string;
+// }
 
 export type ItemActionTypes =
   | FetchDataRequestAction
   | FetchDataSuccessAction
-  | FetchDataFailureAction
-  | UpdateItemAction;
+  | FetchDataFailureAction;

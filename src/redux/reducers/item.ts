@@ -12,6 +12,11 @@ const initialState: ItemState = {
   error: null,
 };
 
+// const valid = <T>(state: T) => <A>(action: A) =>{
+//   if(!action) return {...state}
+//   return action
+// }
+
 const itemReducer = (
   state = initialState,
   action: ItemActionTypes
@@ -26,14 +31,15 @@ const itemReducer = (
     case FETCH_DATA_SUCCESS:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload!,
         isLoading: false,
       };
     case FETCH_DATA_FAILURE:
+      
       return {
         ...state,
         isLoading: false,
-        error: action.payload,
+         error: action.payload!,
       };
     default:
       return state;

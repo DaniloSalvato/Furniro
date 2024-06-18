@@ -27,3 +27,4 @@ export const removeItemFromCart = (
     dispatch(removeFromCart(id));
   };
 };
+

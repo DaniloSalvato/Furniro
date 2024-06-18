@@ -39,7 +39,7 @@ const Filter = ({
 
   return (
     <div className="flex bg-customBeije-500 py-6 justify-around flex-wrap md:flex-nowrap">
-      <div className="flex w-full justify-center items-center">
+      <div className="flex w-4/5 md:w-full justify-center items-center flex-wrap md:mt-0">
         <img
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/filter.svg"
           alt="filter"
@@ -57,30 +57,34 @@ const Filter = ({
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/filter-3.svg"
           alt="filter-3"
         />
-        <div className="border-l border-black ml-5 pl-6">
+        <div className=" mt-5 md:mt-0 md:border-l md:border-black md:ml-5 md:pl-6 flex-wrap">
           <p>
             Showing {firstItem}–{lastItem} of {totalItems} results
           </p>
         </div>
       </div>
-      <div className="flex w-full justify-center items-center">
-        <p className="mx-5">Show</p>
+      <div className="flex flex-col-reverse w-4/5 md:flex-row md:w-full md:justify-center md:items-center flex-wrap">
         <div>
-          <input
-            className="text-customBlack-800 w-12 px-2 py-3 bg-white "
-            type="text"
-            placeholder="16"
-            onChange={handleChangeProductsPerPage}
-          />
+          <div className="flex justify-center items-center gap-2 md:gap-0 mt-5 md:mt-0">
+            <p className="md:mx-5 md:mt-0 ">Show</p>
+            <input
+              className="text-customBlack-800 w-12 px-2 py-3 bg-white "
+              type="text"
+              placeholder="16"
+              onChange={handleChangeProductsPerPage}
+            />
+          </div>
         </div>
-        <p className="mx-5">Sort by</p>
-        <div className="bg-white">
-          <input
-            className="text-customBlack-800 px-4 py-3 bg-white "
-            type="text"
-            placeholder="Default"
-            onChange={handleSearchProduct}
-          />
+        <div  className="flex justify-center items-center gap-2 md:gap-0 mt-5 md:mt-0">
+          <p className="md:mx-5 md:mt-0">Sort by</p>
+          <div className="bg-white">
+            <input
+              className="text-customBlack-800 px-2 md:px-4 py-3 bg-white "
+              type="text"
+              placeholder="Default"
+              onChange={handleSearchProduct}
+            />
+          </div>
         </div>
       </div>
     </div>

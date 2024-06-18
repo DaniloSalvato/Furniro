@@ -26,20 +26,29 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const UPDATE_CART = "UPDATE_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
-export interface AddToCartAction {
-  type: typeof ADD_TO_CART;
-  payload: CartItem;
+export interface GenericAction<T = string, P = unknown> {
+  type: T;
+  payload: P;
 }
 
-export interface UpdateCartAction {
-  type: typeof UPDATE_CART;
-  payload: { id: number; quantity: number };
-}
+export type AddToCartAction = GenericAction<typeof ADD_TO_CART,  CartItem>
+export type UpdateCartAction = GenericAction<typeof UPDATE_CART, { id: number; quantity: number }>
+export type RemoveFromCartAction = GenericAction<typeof REMOVE_FROM_CART, { id: number }>
 
-export interface RemoveFromCartAction {
-  type: typeof REMOVE_FROM_CART;
-  payload: { id: number };
-}
+// export interface AddToCartAction {
+//   type: typeof ADD_TO_CART;
+//   payload: CartItem;
+// }
+
+// export interface UpdateCartAction {
+//   type: typeof UPDATE_CART;
+//   payload: { id: number; quantity: number };
+// }
+
+// export interface RemoveFromCartAction {
+//   type: typeof REMOVE_FROM_CART;
+//   payload: { id: number };
+// }
 
 export type CartActionTypes =
   | AddToCartAction

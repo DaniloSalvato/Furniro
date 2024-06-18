@@ -22,7 +22,7 @@ const Details = ({
 }: Item) => {
   return (
     <main className="flex flex-col h-full">
-      <section className="flex flex-col md:flex w-full h-full py-16 justify-center items-center">
+      <section className="flex flex-col lg:flex-row w-full h-full py-16 justify-center items-center">
         <Exhibition
           id={id}
           title={title}
