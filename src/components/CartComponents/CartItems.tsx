@@ -1,7 +1,7 @@
 
 import NumberInputComponent from "../GenericComponents/NumberInput";
 import { useDispatch } from "react-redux";
-import { removeItemFromCart } from "../../redux/thunks/cart";
+import { removeItemFromCart, updateItemCart } from "../../redux/thunks/cart";
 import { formatRupiah } from "../../utils/utils";
 import { RootState } from "../../redux/reducers";
 import { useSelector } from "react-redux";
@@ -10,6 +10,11 @@ const CartItems = () => {
   const {cartItems} = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
+
+  const handleUpdateCart = (id: number, quantity: number) => {
+    dispatch(updateItemCart(id, quantity));
+  };
+
   return (
     <>
       <div className="grid grid-cols-5 w-full items-center justify-center bg-customBeije-500">
@@ -51,6 +56,7 @@ const CartItems = () => {
               <NumberInputComponent
                 id={item.id}
                 quantity={item.quantity}
+                handleUpdateCart={handleUpdateCart}
               />
             </p>
 

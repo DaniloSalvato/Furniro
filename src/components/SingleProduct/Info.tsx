@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Item } from "../../types/Item";
 import { updateItemCart } from "../../redux/thunks/cart";
@@ -17,7 +16,6 @@ const Info = ({
   tags,
   quantity,
 }: Item) => {
-  const [newQuantity, setNewQuantity] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -62,11 +60,12 @@ const Info = ({
         <NumberInput
           id={id}
           quantity={quantity}
+          handleUpdateCart={handleUpdateCart}
         />
 
         <button
           className=" ml-4 py-1 px-8 border border-black rounded-lg"
-          onClick={() => handleUpdateCart(id, 4)}
+          onClick={() => handleUpdateCart(id,quantity)}
         >
           Add To Cart
         </button>

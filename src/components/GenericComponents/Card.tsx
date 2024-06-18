@@ -51,6 +51,7 @@ const Card = ({
         <Link to={`/product/${id}`}>
           <img className=" w-full" src={image} alt="image" />
 
+          {/* define item novo */}
           <div className="absolute top-5 right-5">
             {isNew ? (
               <div className="h-12 w-12 bg-customGreen-500 rounded-full  flex items-center justify-center">
@@ -61,6 +62,7 @@ const Card = ({
             )}
           </div>
 
+          {/* define item em promoção  */}
           <div className="absolute top-5 right-5">
             {inSale ? (
               <div className="h-12 w-12 bg-customRed-500 rounded-full  flex items-center justify-center">

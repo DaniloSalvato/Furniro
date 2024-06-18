@@ -11,8 +11,7 @@ const Navbar = () => {
   const [navBarExpanded, setNavBarExpanded] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const { cartItems } = useSelector((state:RootState) => state.cart);
-
+  const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const handleMenuBtnClick = () => {
     setNavBarExpanded((prevState) => !prevState);
@@ -111,11 +110,12 @@ const Navbar = () => {
               onClick={handleCartClick}
             ></div>
             <div className="absolute w-cartW right-0 top-0 bg-customBeije-150 p-4 z-50">
-              <div className="flex justify-center items- mt-4 mb-5 pb-5 ml-2 border-b border-b-customBlack-950">
-                <h2 className="w-4/5 font-poppins font-semibold text-2xl  ">
+              <div className="flex justify-center items-center mt-4 mb-5 pb-5 ml-2 ">
+                <h2 className="w-4/5 pb-4 font-poppins font-semibold text-2xl  border-b border-b-customBlack-950">
                   Shopping Cart
                 </h2>
-                <img
+                <img 
+                className="pb-4"
                   src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/bag.svg"
                   alt="bag-icon"
                   onClick={handleCartClick}
@@ -149,17 +149,16 @@ const Navbar = () => {
               </div>
 
               <div className="flex mt-4 mx-2 ">
-                <p className="font-poppins font-normal text-base text-black">
+                <p className="font-poppins font-normal text-base text-black ">
                   Subtotal
                 </p>
 
                 <p className="font-poppins font-semibold text-base text-customYellow-900 ml-32">
-           
                   {formatRupiah(totalAmount(cartItems))}
                 </p>
               </div>
 
-              <div className="flex mt-4 mx-2 justify-between">
+              <div className="flex mt-4 mx-2 pt-4 justify-between border-t border-customBlack-950">
                 <Link to={"cart"}>
                   <button
                     onClick={handleCartClick}

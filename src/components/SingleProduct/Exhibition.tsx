@@ -18,17 +18,17 @@ const Exhibition = ({ id }: Item) => {
   return (
     <>
       {item && (
-        <div className="flex flex-col justify-start items-center w-full h-full py-8">
-          <div className="flex w-full my-2 justify-center items-start">
+        <div className="flex flex-col w-full h-full py-8 items-center justify-start lg:flex-row-reverse lg:justify-between  ">
+          <div className="flex w-full my-2 justify-center items-start lg:w-full">
             <img
-              className="bg-cover bg-center bg-no-repeat "
+              className="bg-cover bg-center bg-no-repeat md:h-500 md:w-481"
               src={item.image}
               alt=""
             />
           </div>
 
-          <div className="flex w-5/6 md:flex-col gap-2 md:gap-8 h-full justify-between items-center m-2 md:m-8">
-            <div>
+          <div className="flex w-5/6 lg:flex-col gap-2 lg:gap-10 h-full justify-between items-center lg:items-end m-2 lg:m-0 lg:w-1/4 lg:h-full ">
+            <div className="lg:w-3/5">
               <img
                 className="bg-cover bg-center bg-no-repeat"
                 src={item.image}
@@ -36,7 +36,7 @@ const Exhibition = ({ id }: Item) => {
               />
             </div>
 
-            <div>
+            <div className="lg:w-3/5">
               <img
                 className=" bg-cover bg-center bg-no-repeat"
                 src={item.image}
@@ -44,7 +44,7 @@ const Exhibition = ({ id }: Item) => {
               />
             </div>
 
-            <div>
+            <div className="lg:w-3/5">
               <img
                 className=" bg-cover bg-center bg-no-repeat"
                 src={item.image}
@@ -52,7 +52,7 @@ const Exhibition = ({ id }: Item) => {
               />
             </div>
 
-            <div>
+            <div className="lg:w-3/5">
               <img
                 className=" bg-cover bg-center bg-no-repeat"
                 src={item.image}

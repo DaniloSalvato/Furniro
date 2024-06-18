@@ -9,7 +9,7 @@ import {
 } from "../../types/Item";
 
 export const fetchDataRequest = (): FetchDataRequestAction => ({
-  type: FETCH_DATA_REQUEST,
+  type: FETCH_DATA_REQUEST
 });
 
 export const fetchDataSuccess = (items: Item[]): FetchDataSuccessAction => ({
