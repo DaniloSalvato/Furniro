@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Item } from "../../types/Item";
 import { addItemToCart } from "../../redux/thunks/cart";
-
 import { formatRupiah } from "../../utils/utils";
 
 const Card = ({
@@ -98,7 +97,7 @@ const Card = ({
             </div>
           </div>
 
-          <div className="absolute flex flex-col inset-0 justify-center items-center hover:bg-black/70 -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="absolute flex flex-col inset-0 justify-center items-center hover:bg-black/70 -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 ">
             <button
               className="bg-white text-customYellow-900 px-5 py-2 border border-black z-50"
               onClick={handleAddToCart}

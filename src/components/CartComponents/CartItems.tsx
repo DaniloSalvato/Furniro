@@ -1,19 +1,14 @@
-
-import NumberInputComponent from "../GenericComponents/NumberInput";
-import { useDispatch } from "react-redux";
-import { removeItemFromCart, updateItemCart } from "../../redux/thunks/cart";
+import NumberInput from "../GenericComponents/NumberInput";
+import { removeItemFromCart } from "../../redux/thunks/cart";
 import { formatRupiah } from "../../utils/utils";
 import { RootState } from "../../redux/reducers";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const CartItems = () => {
-  const {cartItems} = useSelector((state: RootState) => state.cart);
+  const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const dispatch = useDispatch();
-
-  const handleUpdateCart = (id: number, quantity: number) => {
-    dispatch(updateItemCart(id, quantity));
-  };
 
   return (
     <>
@@ -38,7 +33,8 @@ const CartItems = () => {
       <div className="grid grid-cols-5 w-full items-center justify-center">
         {cartItems.map((item) => (
           <>
-            <img key={item.id}
+            <img
+              key={item.id}
               className="col-span-1 col-start-1 w-20 h-20 rounded-lg m-2"
               src={item.image}
               alt={item.title}
@@ -53,18 +49,14 @@ const CartItems = () => {
             </p>
 
             <p className="col-start-4 m-2">
-              <NumberInputComponent
-                id={item.id}
-                quantity={item.quantity}
-                handleUpdateCart={handleUpdateCart}
-              />
+              <NumberInput id={item.id} />
             </p>
 
             <p className="col-start-5 m-2">
               {formatRupiah(item.value * item.quantity)}
             </p>
 
-            <img 
+            <img
               onClick={() => dispatch(removeItemFromCart(item.id))}
               src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/trash.svg"
               alt="trash"

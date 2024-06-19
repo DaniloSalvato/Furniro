@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Discover = () => {
   return (
-    <div className="bg-background-home bg-cover bg-center w-full h-screen" >
-      <div className="flex w-full h-full ">
-        <div className="md:flex md:flex-1"></div>
+    <div className="bg-background-home bg-cover bg-center w-full min-h-screen" >
+      <div className="flex w-full h-full min-h-screen justify-center items-center">
+        <div className="md:flex sm:flex-1 justify-center items-center"></div>
 
         <div className="flex flex-1 w-full h-full items-center justify-center md:justify-start">
           
@@ -10,16 +12,18 @@ const Discover = () => {
             <h2 className="font-poppins font-semibold md:text-lg lg:text-base text-customBlack-300 tracking-widest pt-10">
               New Arrival
             </h2>
-            <h1 className=" font-poppins font-bold text-md md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-customYellow-900 mt-3 md:leading-snug">
+            <p className=" font-poppins font-bold text-md md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-customYellow-900 mt-3 md:leading-6">
               Discover Our <br /> New Collection
-            </h1>
-            <p className="font-poppins font-medium text-xs md:text-base lg:text-lg text-customBlack-300 mt-2 md:mb-5 lg:mb-70 xl:mb-10">
+            </p>
+            <p className="font-poppins font-medium text-xs md:text-base lg:text-lg text-customBlack-300 mt-3 md:mb-5 lg:mb-70 xl:mb-10">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
               tellus, luctus nec ullamcorper mattis.
             </p>
-            <button className="font-poppins font-bold text-xs md:text-base bg-customYellow-900 text-white px-10 py-4 mt-10 md:mt-16 md:px-5 md:py-3 md:mb-9 lg:mt-4 lg:px-16 lg:py-5 xl:mb-10">
+            <Link to={"*"}>
+            <button className="font-poppins font-bold text-xs md:text-base bg-customYellow-900 text-white px-10 py-4 mb-10 mt-4   md:px-5 md:py-3 lg:px-16 lg:py-5 ">
               BUY NOW
             </button>
+            </Link>
           </div>
         </div>
       </div>

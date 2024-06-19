@@ -15,7 +15,20 @@ import ErrorPage from "./pages/ErrorPage";
 import SingleProductPage from "./pages/SingleProductPage";
 import { store, persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
+import Login from "./components/singUp-singIn/Login";
+import Register from "./components/singUp-singIn/Register";
+import AboutPage from "./pages/AboutPage";
 
+const privateRoute = () => {
+  const token = localStorage.getItem("accessToken") ?? "";
+ 
+  
+  if (token && token.length >= 500) {
+    return <CheckoutPage page="Checkout" />;
+  }
+
+  return <Login />;
+};
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,25 +40,39 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "shop",
+        path: "/shop",
         element: <ShopPage page="Shop" />,
       },
       {
-        path: "cart",
+        path: "/cart",
         element: <CartPage page="Cart" />,
       },
       {
-        path: "checkout",
-        element: <CheckoutPage page="Checkout" />,
+        path: "/checkout",
+        element: privateRoute(),
       },
       {
-        path: "contact",
+        path: "/contact",
         element: <ContactPage page="Contact" />,
       },
       {
         path: "/product/:id",
         element: <SingleProductPage />,
       },
+      {
+        path: "/about",
+        element: <AboutPage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      
+      
     ],
   },
 ]);
