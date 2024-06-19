@@ -1,6 +1,4 @@
-import { useDispatch } from "react-redux";
 import { Item } from "../../types/Item";
-import { updateItemCart } from "../../redux/thunks/cart";
 import { formatRupiah } from "../../utils/utils";
 import NumberInput from "../GenericComponents/NumberInput";
 import Star from "./Star";
@@ -14,15 +12,7 @@ const Info = ({
   sku,
   category,
   tags,
-  quantity,
 }: Item) => {
-
-  const dispatch = useDispatch();
-
-  const handleUpdateCart = (id: number, quantity: number) => {
-    dispatch(updateItemCart(id, quantity));
-  };
-
   return (
     <div className="flex w-4/5 h-full flex-col">
       <h1 className="font-poppins font-normal text-4xl mt-11">{title}</h1>
@@ -57,18 +47,7 @@ const Info = ({
         <div className="h-8 w-8 bg-customYellow-900 rounded-full"></div>
       </div>
       <div className="flex mt-4">
-        <NumberInput
-          id={id}
-          quantity={quantity}
-          handleUpdateCart={handleUpdateCart}
-        />
-
-        <button
-          className=" ml-4 py-1 px-8 border border-black rounded-lg"
-          onClick={() => handleUpdateCart(id,quantity)}
-        >
-          Add To Cart
-        </button>
+        <NumberInput id={id} showButton/>     
       </div>
       <div className="">
         <div className="flex gap-4 mt-4 font-poppins font-normal text-sm text-customBlack-800">

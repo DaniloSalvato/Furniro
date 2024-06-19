@@ -1,7 +1,10 @@
+import Errors from "../components/ErrorComponents/Errors"
 
 const ErrorPage = () => {
   return (
-    <div>ErrorPage</div>
+    <div>
+      <Errors/>
+    </div>
   )
 }
 

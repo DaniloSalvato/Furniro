@@ -1,45 +1,66 @@
 import { useEffect, useState } from "react";
+import { updateItemCart } from "../../redux/thunks/cart";
+import { useDispatch } from "react-redux";
 
 interface NumberInputProps {
   id: number;
-  quantity: number;
-  handleUpdateCart: (id :number, quantity:number) => void
+  showButton?: boolean;
 }
 
-type Operation = 'increment' | 'decrement'
+type Operation = "increment" | "decrement";
 
-const NumberInput = ({ id, quantity, handleUpdateCart }: NumberInputProps) => {
-  const [qtd, setQtd] = useState(quantity);
+const NumberInput = ({ id, showButton }: NumberInputProps) => {
 
-  useEffect(()=>{
-    handleUpdateCart(id, qtd)
-  },[qtd])
+  
 
-  const count = ( operation: Operation) => {
-    if (operation === 'increment') {
-      const newQtd = qtd + 1;
-      setQtd(newQtd)
+  const [qtd, setQtd] = useState(0);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateItemCart(id, qtd));
+  }, [qtd]);
+
+  const count = (operation: Operation) => {
+    if (operation === "increment") {
+      setQtd(qtd + 1);
     } else if (operation === "decrement" && qtd > 0) {
-      const newQtd = qtd - 1;
-      setQtd(newQtd);
+      setQtd(qtd - 1);
     }
   };
-  
+
   return (
-    <div className="flex items-center border border-gray-300 rounded-lg w-32 justify-between px-2 py-3">
-      <button onClick={() => count('decrement')} className="text-lg font-bold text-gray-600">
-        -
-      </button>
-      <input
-        type="text"
-        className="text-lg text-center w-12"
-        value={qtd}
-        min={1}
-      />
-      <button onClick={() => count('increment')} className="text-lg font-bold text-gray-600">
-        +
-      </button>
-    </div>
+    <>
+      <div className="flex items-center border border-gray-300 rounded-lg w-32 justify-between px-2 py-3">
+        <button
+          onClick={() => count("decrement")}
+          className="text-lg font-bold text-gray-600"
+        >
+          -
+        </button>
+        <input
+          type="text"
+          className="text-lg text-center w-12"
+          value={qtd}
+          min={1}
+        />
+        <button
+          onClick={() => count("increment")}
+          className="text-lg font-bold text-gray-600"
+        >
+          +
+        </button>
+      </div>
+
+      {showButton && (
+        <button
+          className=" ml-4 py-1 px-8 border border-black rounded-lg"
+          onClick={() => dispatch(updateItemCart(id, qtd))}
+        >
+          Add To Cart
+        </button>
+      )}
+    </>
   );
 };
 
