@@ -8,7 +8,7 @@ import { rootReducer } from "./reducers";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['cart','items','address'],
+  whitelist: ['cart','items','order'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

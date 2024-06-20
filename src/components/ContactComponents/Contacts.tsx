@@ -182,7 +182,7 @@ const Contacts = () => {
             <div className="flex mb-16 mt-12  justify-center md:justify-normal">
               <button
                 type="submit"
-                className="font-poppins px-20 py-3 bg-customYellow-900 text-white font-light text-base rounded-md shadow-sm hover:bg-customYellow-900"
+                className="font-poppins px-20 py-3 bg-customYellow-900 text-white font-light text-base rounded-md shadow-sm hover:bg-customYellow-900 transform transition-transform duration-200 hover:scale-105"
               >
                 Submit
               </button>

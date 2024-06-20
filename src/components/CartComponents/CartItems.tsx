@@ -49,7 +49,7 @@ const CartItems = () => {
             </p>
 
             <p className="col-start-4 m-2">
-              <NumberInput id={item.id} />
+              <NumberInput id={item.id} quantity={item.quantity} />
             </p>
 
             <p className="col-start-5 m-2">

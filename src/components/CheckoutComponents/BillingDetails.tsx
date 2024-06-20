@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,18 +6,22 @@ import { billingSchema, BillingData } from "../../schemas/billingSchema";
 import { toast } from "react-toastify";
 import { Item } from "../../types/Item";
 import { RootState } from "../../redux/reducers";
-import { formatRupiah, totalAmount } from "../../utils/utils";
+import { convertUfToState, formatRupiah, totalAmount } from "../../utils/utils";
+import { useDispatch } from "react-redux";
+import { fetchAddress } from "../../redux/thunks/address";
+import { CreateNewOrder } from "../../redux/thunks/order";
 
 const BillingDetails = () => {
+  const dispatch = useDispatch()
 
   const { cartItems } = useSelector((state: RootState) => state.cart);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [orderPlaced, setOrderPlaced] = useState(false);
+  const address = useSelector((state:RootState) => state.address)
 
   const {
     register,
     handleSubmit,
+    setError,
+    setValue,
     reset,
     formState: { errors },
   } = useForm<BillingData>({
@@ -26,27 +30,40 @@ const BillingDetails = () => {
   });
 
   const onSubmit = (data: BillingData) => {
-    const orderData = {
+    const order = {
       ...data,
+      add: data.add || '',
+      company: data.company || '',
+      additionalInfo: data.additionalInfo || '',
       items: cartItems,
-      totalAmount: totalAmount,
+      totalAmount: totalAmount(cartItems),
     };
 
-    console.log(orderData);
-    // Process the data
+    dispatch(CreateNewOrder(order))
     reset();
-    setOrderPlaced(true);
-    setTimeout(() => {
-      toast.success("Order sended!");
-      setOrderPlaced(false);
-    }, 5000);
+    toast.success("Order sended!");
+    
+  };
+
+  const checkCEP = (e: ChangeEvent<HTMLInputElement>) => {
+    const cep = e.target.value.replace(/\D/g, "");
+    
+    dispatch(fetchAddress(cep))
+
+    const convertedCEP = convertUfToState(address.address.uf)
+
+    convertedCEP ? setValue('province', convertedCEP) : setError('province', { type: 'manual', message: convertedCEP });
+
+    setValue('street', address.address.logradouro)
+    setValue('city', address.address.localidade)
+    
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <main className="flex flex-col md:flex-row w-full h-full">
-        <section className="flex flex-1 justify-center items-center">
-          <div className="w-4/5 md:w-2/5">
+      <main className="flex flex-col items-start  md:flex-row w-full h-full">
+        <section className="flex w-full md:w-2/5 justify-center items-center">
+          <div className="w-4/5 md:w-3/5">
             <h1 className="font-poppins font-semibold text-4xl mt-20">
               Billing details
             </h1>
@@ -56,11 +73,11 @@ const BillingDetails = () => {
                 <input
                   id="firstname"
                   {...register("firstName")}
-                  className="border w-full h-12 rounded-md mt-5"
+                  className="border w-full h-12 rounded-md mt-2 pl-3"
                   type="text"
                 />
                 {errors.firstName && (
-                  <p className="text-red-600 text-xs">
+                  <p className="text-red-600 text-xs font-normal">
                     {errors.firstName.message}
                   </p>
                 )}
@@ -71,11 +88,11 @@ const BillingDetails = () => {
                 <input
                   id="lastname"
                   {...register("lastName")}
-                  className="border w-full h-12 rounded-md mt-5"
+                  className="border w-full h-12 rounded-md mt-2 pl-3"
                   type="text"
                 />
                 {errors.lastName && (
-                  <p className="text-red-600 text-xs">
+                  <p className="text-red-600 text-xs font-normal">
                     {errors.lastName.message}
                   </p>
                 )}
@@ -87,7 +104,7 @@ const BillingDetails = () => {
               <input
                 id="company"
                 {...register("company")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
             </div>
@@ -97,11 +114,12 @@ const BillingDetails = () => {
               <input
                 id="zip"
                 {...register("zip")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
+                onBlur={checkCEP}
               />
               {errors.zip && (
-                <p className="text-red-600 text-xs">{errors.zip.message}</p>
+                <p className="text-red-600 text-xs font-normal">{errors.zip.message}</p>
               )}
             </div>
 
@@ -110,11 +128,11 @@ const BillingDetails = () => {
               <input
                 id="country"
                 {...register("country")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
               {errors.country && (
-                <p className="text-red-600 text-xs">{errors.country.message}</p>
+                <p className="text-red-600 text-xs font-normal">{errors.country.message}</p>
               )}
             </div>
 
@@ -123,11 +141,11 @@ const BillingDetails = () => {
               <input
                 id="street"
                 {...register("street")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
               {errors.street && (
-                <p className="text-red-600 text-xs">{errors.street.message}</p>
+                <p className="text-red-600 text-xs font-normal">{errors.street.message}</p>
               )}
             </div>
 
@@ -136,11 +154,11 @@ const BillingDetails = () => {
               <input
                 id="city"
                 {...register("city")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
               {errors.city && (
-                <p className="text-red-600 text-xs">{errors.city.message}</p>
+                <p className="text-red-600 text-xs font-normal">{errors.city.message}</p>
               )}
             </div>
 
@@ -149,11 +167,11 @@ const BillingDetails = () => {
               <input
                 id="province"
                 {...register("province")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
               {errors.province && (
-                <p className="text-red-600 text-xs">
+                <p className="text-red-600 text-xs font-normal">
                   {errors.province.message}
                 </p>
               )}
@@ -164,7 +182,7 @@ const BillingDetails = () => {
               <input
                 id="add"
                 {...register("add")}
-                className="border w-full h-12 rounded-md mt-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
             </div>
@@ -179,11 +197,11 @@ const BillingDetails = () => {
               <input
                 id="email"
                 {...register("email")}
-                className="border w-full h-12 rounded-md mt-5 mb-5"
+                className="border w-full h-12 rounded-md mt-2 pl-3"
                 type="text"
               />
               {errors.email && (
-                <p className="text-red-600 text-xs">{errors.email.message}</p>
+                <p className="text-red-600 text-xs font-normal">{errors.email.message}</p>
               )}
             </div>
 
@@ -192,14 +210,14 @@ const BillingDetails = () => {
                 id="additionalInfo"
                 {...register("additionalInfo")}
                 placeholder="Additional information"
-                className="border w-full h-12 rounded-md mt-5 mb-20 font-poppins font-normal text-base"
+                className="border w-full h-12 rounded-md mt-6 mb-20 font-poppins font-normal text-base"
                 type="text"
               />
             </div>
           </div>
         </section>
 
-        <section className="flex flex-1 justify-center items-center">
+        <section className="flex md:w-3/5 h-full justify-center">
           <div className="w-4/5 h-full md:pt-28">
             <div className="flex justify-between mb-5">
               <span className="font-poppins font-medium text-2xl">Product</span>

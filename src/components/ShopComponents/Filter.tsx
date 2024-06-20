@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 type Pagination = {
   itemsPerPage: number;
@@ -18,10 +18,20 @@ const Filter = ({
 }: Pagination) => {
   const [search, setSearch] = useState("");
   const [value, setValue] = useState<number>(itemsPerPage);
+  const [isAble, setIsAble] = useState(false);
 
   const handleSearchProduct = (e: ChangeEvent<HTMLInputElement>) => {
     const product = e.target.value;
     product ? setSearch(product) : setSearch("");
+  };
+
+  const filterRef = useRef<HTMLInputElement>(null);
+
+  const handleFilter = () => {
+    setIsAble(true);
+    if (filterRef.current) {
+      filterRef.current.focus();
+    }
   };
 
   useEffect(() => {
@@ -44,9 +54,12 @@ const Filter = ({
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/filter.svg"
           alt="filter"
         />
-        <p className="font-poppins font-normal text-xl text-black ml-4">
+        <button
+          onClick={handleFilter}
+          className="font-poppins font-normal text-xl text-black ml-4 cursor-pointer"
+        >
           Filter
-        </p>
+        </button>
         <img
           className="ml-6"
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/filter-2.svg"
@@ -68,6 +81,8 @@ const Filter = ({
           <div className="flex justify-center items-center gap-2 md:gap-0 mt-5 md:mt-0">
             <p className="md:mx-5 md:mt-0 ">Show</p>
             <input
+              ref={filterRef}
+              disabled={isAble ? false : true}
               className="text-customBlack-800 w-12 px-2 py-3 bg-white "
               type="text"
               placeholder="16"
@@ -75,10 +90,11 @@ const Filter = ({
             />
           </div>
         </div>
-        <div  className="flex justify-center items-center gap-2 md:gap-0 mt-5 md:mt-0">
+        <div className="flex justify-center items-center gap-2 md:gap-0 mt-5 md:mt-0">
           <p className="md:mx-5 md:mt-0">Sort by</p>
           <div className="bg-white">
             <input
+              disabled={isAble ? false : true}
               className="text-customBlack-800 px-2 md:px-4 py-3 bg-white "
               type="text"
               placeholder="Default"

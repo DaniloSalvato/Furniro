@@ -12,9 +12,9 @@ const CartTotal = () => {
 
       <div className="flex w-full flex-col mt-16">
         <div className="flex justify-evenly items-start flex-wrap">
-          <p className="font-poppins font-medium text-base">Subtotal</p>
+          <p className="font-poppins font-medium text-base ">Subtotal</p>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col items-end">
             {cartItems.map((item) => (
               <p
                 key={item.id}
@@ -34,7 +34,7 @@ const CartTotal = () => {
         </div>
       </div>
       <Link to={"/checkout"}>
-        <button className="py-2 mt-8 mb-8 px-8 my-4 border border-black rounded-lg">
+        <button className="font-poppins font-normal text-xl py-2 mt-10 mb-8 px-8 my-4 border border-black rounded-lg hover:bg-white hover:text-customYellow-900 transform transition-transform duration-200 hover:scale-105">
           Check Out
         </button>
       </Link>

@@ -22,25 +22,28 @@ const Details = ({
 }: Item) => {
   return (
     <main className="flex flex-col h-full">
-      <section className="flex flex-col lg:flex-row w-full h-full py-16 justify-center items-center">
-        <Exhibition
-          id={id}
-          title={title}
-          subtitle={subtitle}
-          about={about}
-          description={description}
-          image={image}
-          star={star}
-          value={value}
-          inSale={inSale}
-          percentage={percentage}
-          isNew={isNew}
-          sku={sku}
-          category={category}
-          tags={tags}
-          quantity={quantity}
-        />
+      <section className="flex flex-col lg:flex-row w-full h-full mt-10 py-8 justify-center items-start">
+        <div className="flex-1">
+          <Exhibition
+            id={id}
+            title={title}
+            subtitle={subtitle}
+            about={about}
+            description={description}
+            image={image}
+            star={star}
+            value={value}
+            inSale={inSale}
+            percentage={percentage}
+            isNew={isNew}
+            sku={sku}
+            category={category}
+            tags={tags}
+            quantity={quantity}
+          />
+        </div>
 
+        <div className="flex-1">
         <Info
           id={id}
           title={title}
@@ -58,25 +61,12 @@ const Details = ({
           tags={tags}
           quantity={quantity}
         />
+        </div>
+
+        
       </section>
       <section className="mt-16 mb-16">
-        <Description
-          id={id}
-          title={title}
-          subtitle={subtitle}
-          about={about}
-          description={description}
-          image={image}
-          star={star}
-          value={value}
-          inSale={inSale}
-          percentage={percentage}
-          isNew={isNew}
-          sku={sku}
-          category={category}
-          tags={tags}
-          quantity={quantity}
-        />
+        <Description/>
       </section>
     </main>
   );
