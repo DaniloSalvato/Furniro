@@ -60,7 +60,7 @@ const OurProducts = () => {
       </div>
       {visibleProducts < itemsState.items.length && (
         <button
-          className="font-poppins font-semibold text-base bg-white text-customYellow-900 px-20 py-3 mt-12 mb-16 border border-customYellow-900"
+          className="font-poppins font-semibold text-base bg-white text-customYellow-900 px-20 py-3 mt-12 mb-16 border border-customYellow-900 hover:bg-customYellow-900 hover:text-white transform transition-transform duration-200 hover:scale-105"
           onClick={showMoreProducts}
         >
           Show more

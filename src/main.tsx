@@ -3,7 +3,11 @@ import App from "./App";
 import "./index.css";
 
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  Navigate,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 
 import HomePage from "./pages/HomePage";
@@ -17,18 +21,14 @@ import { store, persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Login from "./components/singUp-singIn/Login";
 import Register from "./components/singUp-singIn/Register";
-import AboutPage from "./pages/AboutPage";
 
 const privateRoute = () => {
-  const token = localStorage.getItem("accessToken") ?? "";
- 
-  
-  if (token && token.length >= 500) {
-    return <CheckoutPage page="Checkout" />;
-  }
 
-  return <Login />;
-};
+  const token= localStorage.getItem('accessToken')
+
+  return token && token.length >= 500 ? <CheckoutPage page="Checkout" /> : <Login />;
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,28 +40,24 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/shop",
+        path: "shop",
         element: <ShopPage page="Shop" />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <CartPage page="Cart" />,
       },
       {
-        path: "/checkout",
+        path: "checkout",
         element: privateRoute(),
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <ContactPage page="Contact" />,
       },
       {
         path: "/product/:id",
         element: <SingleProductPage />,
-      },
-      {
-        path: "/about",
-        element: <AboutPage />,
       },
       {
         path: "/login",
@@ -71,8 +67,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      
-      
+      {
+        path: "/",
+        element: <Navigate to="/home" replace />,
+      },
     ],
   },
 ]);

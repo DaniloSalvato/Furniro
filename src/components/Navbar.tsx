@@ -23,7 +23,9 @@ const Navbar = () => {
 
   return (
     <header className="flex items-center justify-between w-full px-3 md:px-6 md:pr-24 py-4 font-poppins text-black font-medium">
-      <div className="flex items-center">
+      {/* logo */}
+      <Link to={"/home"}>
+      <div className="flex items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">
         <img
           className="mr-2"
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg"
@@ -31,74 +33,54 @@ const Navbar = () => {
         />
         <h1 className="font-montserrat font-bold text-4.5xl">Furniro</h1>
       </div>
+      </Link>
 
+      {/* navegação */}
       <nav
         className={`${
           navBarExpanded ? "block" : "hidden"
-        } text-center md:flex md:items-center md:w-auto w-full absolute md:relative top-16 md:top-0 left-0 md:left-auto z-50 md:z-10 bg-customYellow-900 md:bg-transparent md:text-black text-black`}
+        } text-center md:flex md:items-center md:w-auto w-1/2 absolute md:relative top-20 md:top-0 right-0 md:left-auto z-40 md:z-10 bg-customYellow-100 md:bg-transparent md:text-black text-black`}
       >
-        <ul className="flex flex-col md:flex-row md:items-center md:gap-8 gap-4 p-4 md:p-0">
-          <li>
-            <NavLink
-              className="nav-link"
-              to="/home"
-              onClick={handleMenuBtnClick}
-            >
-              Home
-            </NavLink>
+        <ul className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-20 gap-4 p-4 md:p-0">
+          <li className="transform transition-transform duration-200 hover:scale-105">
+            <NavLink to="/home">Home</NavLink>
           </li>
-          <li>
-            <NavLink
-              className="nav-link"
-              to="/shop"
-              onClick={handleMenuBtnClick}
-            >
-              Shop
-            </NavLink>
+          <li className="transform transition-transform duration-200 hover:scale-105">
+            <NavLink to="/shop">Shop</NavLink>
           </li>
-          <li>
-            <NavLink
-              className="nav-link"
-              to="/about"
-              onClick={handleMenuBtnClick}
-            >
-              About
-            </NavLink>
+          <li className="transform transition-transform duration-200 hover:scale-105">
+            <NavLink to="/about">About</NavLink>
           </li>
-          <li>
-            <NavLink
-              className="nav-link"
-              to="/contact"
-              onClick={handleMenuBtnClick}
-            >
-              Contact
-            </NavLink>
+          <li className="transform transition-transform duration-200 hover:scale-105">
+            <NavLink to="/contact">Contact</NavLink>
           </li>
 
-          <li className="flex gap-4 md:hidden justify-center items-center z-50 text-black">
+          <li className="flex gap-4 md:hidden justify-center items-center">
             <img
-              className="cursor-pointer"
+              className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
               src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
               alt="profile-icon"
             />
-            <img
-              className="cursor-pointer"
-              src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/cart.svg"
-              alt="cart-icon"
-              onClick={handleCartClick}
-            />
+            <NavLink to={"/cart"}>
+              <img
+                className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
+                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/cart.svg"
+                alt="cart-icon"
+              />
+            </NavLink>
           </li>
         </ul>
       </nav>
 
+      {/* cart */}
       <div className="hidden gap-8 md:flex">
         <img
-          className="cursor-pointer"
+          className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
           alt="profile-icon"
         />
         <img
-          className="cursor-pointer"
+          className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/cart.svg"
           alt="cart-icon"
           onClick={handleCartClick}
@@ -114,8 +96,8 @@ const Navbar = () => {
                 <h2 className="w-4/5 pb-4 font-poppins font-semibold text-2xl  border-b border-b-customBlack-950">
                   Shopping Cart
                 </h2>
-                <img 
-                className="pb-4"
+                <img
+                  className="pb-4 transform transition-transform duration-200 hover:scale-105 cursor-pointer"
                   src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/bag.svg"
                   alt="bag-icon"
                   onClick={handleCartClick}
@@ -162,7 +144,7 @@ const Navbar = () => {
                 <Link to={"cart"}>
                   <button
                     onClick={handleCartClick}
-                    className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full"
+                    className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full transform transition-transform duration-200 hover:scale-105"
                   >
                     Cart
                   </button>
@@ -170,7 +152,7 @@ const Navbar = () => {
                 <Link to={"checkout"}>
                   <button
                     onClick={handleCartClick}
-                    className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full"
+                    className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full transform transition-transform duration-200 hover:scale-105"
                   >
                     Checkout
                   </button>
@@ -178,7 +160,7 @@ const Navbar = () => {
 
                 <button
                   onClick={handleCartClick}
-                  className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full"
+                  className="font-poppins font-normal text-xs bg-customBeije-150 text-black border border-black py-1 px-8 rounded-full transform transition-transform duration-200 hover:scale-105"
                 >
                   Comparison
                 </button>
@@ -188,7 +170,8 @@ const Navbar = () => {
         )}
       </div>
 
-      <button className="inline-block md:hidden" onClick={handleMenuBtnClick}>
+      {/* burguer */}
+      <button className="inline-block md:hidden transform transition-transform duration-200 hover:scale-105" onClick={handleMenuBtnClick}>
         <img
           src={
             navBarExpanded

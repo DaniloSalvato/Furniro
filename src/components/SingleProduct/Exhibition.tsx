@@ -17,9 +17,9 @@ const Exhibition = ({ id }: Item) => {
 
   return (
     <>
-      {item && (
-        <div className="flex flex-col w-full h-full py-8 items-center justify-start lg:flex-row-reverse lg:justify-between  ">
-          <div className="flex w-full my-2 justify-center items-start lg:w-full">
+      {/* {item && (
+        <div className="flex flex-col w-full h-full py-8 md:py-0 items-center justify-start md:flex-row-reverse lg:justify-between">
+          <div className="flex w-full h-full my-2 md:my-0 justify-center items-start ">
             <img
               className="bg-cover bg-center bg-no-repeat md:h-500 md:w-481"
               src={item.image}
@@ -27,24 +27,16 @@ const Exhibition = ({ id }: Item) => {
             />
           </div>
 
-          <div className="flex w-5/6 lg:flex-col gap-2 lg:gap-10 h-full justify-between items-center lg:items-end m-2 lg:m-0 lg:w-1/4 lg:h-full ">
-            <div className="lg:w-3/5">
+          <div className="flex w-5/6 gap-2 md:flex-col md:w-1/3 md:items-center lg:gap-0 h-full justify-between items-center  lg:items-end m-2 lg:m-0 lg:w-1/4 lg:h-full ">
+            <div className="w-3/5 md:w-1/4 lg:w-full">
               <img
-                className="bg-cover bg-center bg-no-repeat"
+                className="bg-cover bg-center bg-no-repeat md:w-20"
                 src={item.image}
                 alt=""
               />
             </div>
 
-            <div className="lg:w-3/5">
-              <img
-                className=" bg-cover bg-center bg-no-repeat"
-                src={item.image}
-                alt=""
-              />
-            </div>
-
-            <div className="lg:w-3/5">
+            <div className="w-3/5 md:w-1/4 lg:w-full">
               <img
                 className=" bg-cover bg-center bg-no-repeat"
                 src={item.image}
@@ -52,7 +44,15 @@ const Exhibition = ({ id }: Item) => {
               />
             </div>
 
-            <div className="lg:w-3/5">
+            <div className="w-3/5 md:w-1/4 lg:w-full">
+              <img
+                className=" bg-cover bg-center bg-no-repeat"
+                src={item.image}
+                alt=""
+              />
+            </div>
+
+            <div className="w-3/5 md:w-1/4 lg:w-full">
               <img
                 className=" bg-cover bg-center bg-no-repeat"
                 src={item.image}
@@ -61,6 +61,45 @@ const Exhibition = ({ id }: Item) => {
             </div>
           </div>
         </div>
+      )} */}
+      {item && (
+        <>
+          <div className="flex flex-col-reverse items-center md:flex-row md:justify-start md:items-start">
+            <div className="flex w-100 md:flex-col md:justify-center items-center md:gap-6 ">
+              <div className="flex justify-center">
+                <img
+                  className="w-4/5 h-4/5 md:h-2/5 md:w-1/3 rounded-xl"
+                  src={item.image}
+                  alt=""
+                />
+              </div>
+              <div className="flex justify-center ">
+                <img
+                  className="w-4/5 h-4/5 md:h-2/5 md:w-1/3 rounded-xl"
+                  src={item.image}
+                  alt=""
+                />
+              </div>
+              <div className="flex justify-center ">
+                <img
+                  className="w-4/5 h-4/5 md:h-2/5 md:w-1/3 rounded-xl"
+                  src={item.image}
+                  alt=""
+                />
+              </div>
+              <div className="flex justify-center ">
+                <img
+                  className="w-4/5 h-4/5 md:h-2/5 md:w-1/3 rounded-xl"
+                  src={item.image}
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="mb-5 md:h-4/5 md:w-3/5 lg:w-full ">
+              <img className="md:h-500 md:w-481 rounded-xl" src={item.image} alt="" />
+            </div>
+          </div>
+        </>
       )}
     </>
   );

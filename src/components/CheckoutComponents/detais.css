@@ -1,0 +1,36 @@
+.custom-radio .radio-label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+  
+  .custom-radio input[type="radio"]:checked + .radio-label::before {
+    border-color: #4caf50;
+    background-color: #4caf50;
+  }
+  
+  .custom-radio .radio-label::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.3s;
+  }
+  
+  .custom-radio input[type="radio"]:checked + .radio-label::after {
+    transform: translateY(-50%) scale(1);
+  }
+  

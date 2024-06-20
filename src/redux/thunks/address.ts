@@ -10,7 +10,7 @@ export const fetchAddress = (cep: string): ThunkAction<void, RootState, unknown,
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const data = await response.json();
         if (data.erro) {
-          throw new Error('CEP não encontrado');
+          throw new Error('CEP not found');
         }
         dispatch(fetchAddressSuccess(data));
       } catch (error) {

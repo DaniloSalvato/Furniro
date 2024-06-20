@@ -2,7 +2,7 @@ const Certificate = () => {
   return (
     <div className="flex w-full justify-center items-center bg-customBeije-300 p-5">
     <div className="flex flex-wrap w-4/5 sm:w-full">
-      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6">
+      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6 transform transition-transform duration-200 hover:scale-105">
         <img
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/trophy.svg"
           alt="Trophy-icon"
@@ -17,7 +17,7 @@ const Certificate = () => {
           </p>
         </div>
       </div>
-      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6">
+      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6 transform transition-transform duration-200 hover:scale-105">
         <img
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/warranty.svg"
           alt="Warranty-icon"
@@ -32,7 +32,7 @@ const Certificate = () => {
           </p>
         </div>
       </div>
-      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6">
+      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6 transform transition-transform duration-200 hover:scale-105">
         <img
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/free-shipping.svg"
           alt="Free-shipping-icon"
@@ -47,7 +47,7 @@ const Certificate = () => {
           </p>
         </div>
       </div>
-      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6">
+      <div className="flex sm:w-1/2 lg:w-1/4 p-4 justify-center items-center text-left my-6 transform transition-transform duration-200 hover:scale-105">
         <img
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/support.svg"
           alt="Support-icon"

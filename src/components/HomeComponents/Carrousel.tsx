@@ -12,7 +12,7 @@ const Carrousel = () => {
             Our designer already made a lot of beautiful prototipe of rooms that
             inspire you
           </p>
-          <button className="font-poppins font-semibold text-base text-white bg-customYellow-900 py-3 px-8">
+          <button className="font-poppins font-semibold text-base text-white bg-customYellow-900 py-3 px-8 hover:text-customYellow-900 hover:bg-white transform transition-transform duration-200 hover:scale-105">
             Explore More
           </button>
         </div>

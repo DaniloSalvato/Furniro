@@ -20,7 +20,7 @@ const Discover = () => {
               tellus, luctus nec ullamcorper mattis.
             </p>
             <Link to={"*"}>
-            <button className="font-poppins font-bold text-xs md:text-base bg-customYellow-900 text-white px-10 py-4 mb-10 mt-4   md:px-5 md:py-3 lg:px-16 lg:py-5 ">
+            <button className="font-poppins font-bold text-xs md:text-base bg-customYellow-900 text-white px-10 py-4 mb-10 mt-4 md:px-5 md:py-3 lg:px-16 lg:py-5 hover:bg-white hover:text-customBlack-800 transition-transform duration-200 hover:scale-105">
               BUY NOW
             </button>
             </Link>
