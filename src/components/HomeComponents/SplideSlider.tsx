@@ -1,5 +1,6 @@
-import { Splide, SplideSlide } from "react-splide-ts";
+import { Splide, SplideSlide, SplideTrack } from "react-splide-ts";
 import "react-splide-ts/css";
+import "./slide.css";
 
 import Room from "./Room";
 
@@ -25,36 +26,60 @@ const rooms = [
     image:
       "https://furniro-ds.s3.us-east-2.amazonaws.com/carousel/carousel-3.png",
   },
+  {
+    id: 4,
+    title: "Food place",
+    description: "Kitchen",
+    image:
+      "https://furniro-ds.s3.us-east-2.amazonaws.com/carousel/carousel-2.png",
+  },
 ];
 
 const SplideSlider = () => {
   return (
     <div>
       <Splide
+        hasTrack={false}
         options={{
-          type: "slide",
-          height: "auto",
-          width: "auto",
+          type: "loop",
           arrows: true,
           pagination: true,
+          perMove: 1,
+          perPage: 3,
+          focus: 0,
+          fixedWidth: 486,
           autoplay: false,
           rewind: false,
-          autoWidth: true,
-          autoHeight: true,
           gap: "2rem",
+          breakpoints:{
+            1024:{
+              pagination:false
+            }
+          }
         }}
         aria-label="My favorite Images"
       >
-        {rooms.map((room) => (
-          <SplideSlide key={room.id}>
-            <Room
-              id={room.id}
-              title={room.title}
-              description={room.description}
-              image={room.image}
+        <SplideTrack>
+          {rooms.map((room) => (
+            <SplideSlide key={room.id}>
+              <Room
+                id={room.id}
+                title={room.title}
+                description={room.description}
+                image={room.image}
+              />
+            </SplideSlide>
+          ))}
+        </SplideTrack>
+        <div className="splide__arrows">
+          <button className="splide__arrow splide__arrow--prev"></button>
+          <button className="splide__arrow splide__arrow--next">
+            <img
+              src="https://furniro-ds.s3.us-east-2.amazonaws.com/utils/arrow.svg"
+              alt="arrow"
             />
-          </SplideSlide>
-        ))}
+          </button>
+        </div>
       </Splide>
     </div>
   );

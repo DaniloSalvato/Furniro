@@ -3,6 +3,8 @@ import { Item } from "../../types/Item";
 import { removeItemFromCart } from "../../redux/thunks/cart";
 
 const Cart = ({ id, title, image, value, quantity }: Item) => {
+  console.log('quantityCart', quantity);
+  
   const dispatch = useDispatch()
   return (
     <div className="flex w-4/5 py-6 ml-4 justify-between items-center">

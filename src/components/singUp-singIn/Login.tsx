@@ -27,7 +27,7 @@ const Login = () => {
       if (result) {
         const token = await result.user.getIdToken();
         localStorage.setItem("accessToken", token);
-        console.log(result);
+        // console.log(result);
         return navigate("/home");
       }
       

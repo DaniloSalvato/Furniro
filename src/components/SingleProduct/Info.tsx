@@ -6,37 +6,38 @@ import Star from "./Star";
 const Info = ({
   id,
   title,
-  // subtitle,
-  // description,
+  subtitle,
+  description,
   about,
-  // image,
+  image,
   star,
   value,
-  // inSale,S
-  // isNew,
+  inSale,
+  percentage,
+  isNew,
   sku,
   category,
   tags,
   quantity
 }: Item) => {
  
-    // const item = {
-    //   id,
-    //   title,
-    //   subtitle,
-    //   description,
-    //   about,
-    //   image,
-    //   star,
-    //   value,
-    //   inSale,
-    //   percentage,
-    //   isNew,
-    //   sku,
-    //   category,
-    //   tags,
-    //   quantity,
-    // };
+    const item = {
+      id,
+      title,
+      subtitle,
+      description,
+      about,
+      image,
+      star,
+      value,
+      inSale,
+      percentage,
+      isNew,
+      sku,
+      category,
+      tags,
+      quantity,
+    };
   
   return (
     <div className="flex w-4/5 h-full flex-col ml-10 mt-10 md:mt-3 lg:w-1/2 md:ml-20">
@@ -72,7 +73,7 @@ const Info = ({
         <div className="h-8 w-8 bg-customYellow-900 rounded-full transform transition-transform duration-200 hover:scale-105 cursor-pointer"></div>
       </div>
       <div className="flex mt-8">
-        <NumberInput id={id} quantity={quantity} showButton/>     
+        <NumberInput id={id} item={item} showButton/>     
       </div>
       <div className="">
         <div className="flex gap-4 mt-14 pt-10 font-poppins font-normal text-sm text-customBlack-800 border-t border-customBlack-800">

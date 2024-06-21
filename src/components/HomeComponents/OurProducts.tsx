@@ -35,9 +35,9 @@ const OurProducts = () => {
       <h1 className=" font-poppins font-bold text-4xl text-center text-customBlack-500 mt-12 mb-10">
         Our Products
       </h1>
-      <div className="w-11/12 flex flex-wrap -mx-2 justify-items-center">
+      <div className="gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center ">
         {itemsState.items && displayedProducts.map((item) => (
-           <div key={item.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
+           <div key={item.id}>
             <Card
               id={item.id}
               title={item.title}

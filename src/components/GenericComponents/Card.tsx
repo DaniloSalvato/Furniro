@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Item } from "../../types/Item";
 import { addItemToCart } from "../../redux/thunks/cart";
 import { formatRupiah } from "../../utils/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
  
 const Card = ({
   id,
@@ -24,10 +24,6 @@ const Card = ({
 }: Item) => {
   const [isDisable, setIsDisable] = useState(false);
   const dispatch = useDispatch();
-
-  useEffect(()=>{
-
-  },[isDisable])
  
   const handleAddToCart = () => {
     const item = {
@@ -102,7 +98,7 @@ const Card = ({
             {/* hover */}
             <div className="absolute flex flex-col inset-0 justify-center items-center hover:bg-black/70 -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 ">
               <button
-                className="bg-white text-customYellow-900 px-5 py-2 border border-black z-50"
+                className="bg-white text-customYellow-900 px-5 py-2 border border-black z-50 hover:bg-customYellow-900 hover:text-white transform transition-transform duration-200 hover:scale-105"
                 onClick={handleAddToCart}
                 onMouseOver={() => setIsDisable(true)}
                 onMouseOut={() => setIsDisable(false)}

@@ -65,7 +65,7 @@ const Footer = () => {
             <p className="mb-7 text-customBlack-800">Newsletter</p>
             <div>
               <input className="border-b border-b-black mr-2 focus:outline-none" type="text" />
-              <button className="border-b border-b-black transform transition-transform duration-200 hover:scale-105">SUBSCRIBE</button>
+              <button className=" mb-10 md:mb-0 border-b border-b-black transform transition-transform duration-200 hover:scale-105">SUBSCRIBE</button>
             </div>
           </div>
         </div>

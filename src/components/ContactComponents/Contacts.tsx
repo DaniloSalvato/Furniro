@@ -14,8 +14,13 @@ const Contacts = () => {
   });
 
   const onSubmit = (data: ContactData) => {
-    console.log(data);
-    // Process the data
+    const contactData ={
+      name:data.name,
+      email:data.email,
+      message:data.message,
+      subject:data.subject
+    } 
+    localStorage.setItem("contact", JSON.stringify(contactData))
     reset();
   };
   return (

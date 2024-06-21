@@ -41,6 +41,7 @@ export default {
         "4.5xl": "34px",
       },
       spacing: {
+        '2sm':"0.5px",
         card: "446px",
         single: "500px",
         cartW: "417px",
@@ -49,6 +50,7 @@ export default {
         481: "481px",
         500: "500px",
         585: "582px",
+        850: "850px",
       },
     },
   },
