@@ -1,8 +1,14 @@
+import React from "react";
 import App from "./App";
-import "./index.css"
+import "./index.css";
 
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  Navigate,
+} from "react-router-dom";
+import { Provider } from "react-redux";
 
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
@@ -10,7 +16,20 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ContactPage from "./pages/ContactPage";
 import ErrorPage from "./pages/ErrorPage";
-import React from "react";
+import SingleProductPage from "./pages/SingleProductPage";
+import { store, persistor } from "./redux";
+import { PersistGate } from "redux-persist/integration/react";
+import Login from "./components/singUp-singIn/Login";
+import Register from "./components/singUp-singIn/Register";
+
+const privateRoute = () => {
+
+  const token= localStorage.getItem('accessToken')
+
+  console.log(token && token.length >= 500);
+  
+  return token && token.length >= 500 ? <CheckoutPage page="Checkout" /> : <Login />;
+}
 
 const router = createBrowserRouter([
   {
@@ -24,26 +43,46 @@ const router = createBrowserRouter([
       },
       {
         path: "shop",
-        element: <ShopPage />,
+        element: <ShopPage page="Shop" />,
       },
       {
         path: "cart",
-        element: <CartPage />,
+        element: <CartPage page="Cart" />,
       },
       {
         path: "checkout",
-        element: <CheckoutPage />,
+        element: privateRoute(),
       },
       {
         path: "contact",
-        element: <ContactPage />,
-      }
+        element: <ContactPage page="Contact" />,
+      },
+      {
+        path: "/product/:id",
+        element: <SingleProductPage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/",
+        element: <Navigate to="/home" replace />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
