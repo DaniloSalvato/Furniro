@@ -20,8 +20,7 @@ const Register = () => {
 
   const handleRegisterForm = async (data: LoginData) => {
     try {
-      const { result, error } = await CreateNewUser(data.email, data.password);
-      console.log(result);
+      const { error } = await CreateNewUser(data.email, data.password);
 
       if (!error) {
         navigate("/login");

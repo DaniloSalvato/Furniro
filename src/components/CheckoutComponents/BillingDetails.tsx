@@ -289,9 +289,9 @@ const BillingDetails = () => {
                         id="Direct"
                         value="Direct Bank Transfer"
                         {...register("paymentMethod")}
-                        className="accent-black"
+                        className="accent-black peer opacity-55 checked:opacity-100"
                       />
-                      <label htmlFor="Direct">Direct Bank Transfer</label>
+                      <label className="peer-checked:opacity-100 opacity-55" htmlFor="Direct">Direct Bank Transfer</label>
                     </div>
                     <div className="flex items-center gap-2 mt-3">
                       <input
@@ -299,9 +299,9 @@ const BillingDetails = () => {
                         id="Cash"
                         value="Cash On Delivery"
                         {...register("paymentMethod")}
-                        className="accent-black"
+                        className="accent-black peer opacity-55 checked:opacity-100"
                       />
-                      <label htmlFor="Cash">Cash On Delivery</label>
+                      <label className="peer-checked:opacity-100 opacity-55" htmlFor="Cash">Cash On Delivery</label>
                     </div>
                   </fieldset>
                   {errors.paymentMethod && (
