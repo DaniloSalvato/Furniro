@@ -11,10 +11,10 @@ const GoogleLogin = () => {
       if (auth) {
         const token = await auth.user.getIdToken();
         localStorage.setItem("accessToken", token);
-        console.log(auth);
+        // console.log(auth);
         return navigate("/home");
       }
-      console.log("google auth:" + auth )
+      // console.log("google auth:" + auth )
     }
   return (
     <div onClick={handleGoogleLogin}><FcGoogle /></div>

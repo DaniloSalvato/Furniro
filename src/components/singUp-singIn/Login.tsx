@@ -28,7 +28,7 @@ const Login = () => {
       if (result) {
         const token = await result.user.getIdToken();
         localStorage.setItem("accessToken", token);
-       console.log(result);
+      //  console.log(result);
         return navigate("/home");
       }
       
@@ -37,7 +37,7 @@ const Login = () => {
       }
     } catch (error) {
       if (error instanceof FirebaseError) {
-        console.error("Firebase error code:", error.code); // Log adicional para diagnosticar
+        // console.error("Firebase error code:", error.code); // Log adicional para diagnosticar
         switch (error.code) {
           case 'auth/invalid-email':
             setError('email', { type: 'manual', message: 'Invalid email' });

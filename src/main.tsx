@@ -25,8 +25,6 @@ import Register from "./components/singUp-singIn/Register";
 const privateRoute = () => {
 
   const token= localStorage.getItem('accessToken')
-
-  console.log(token && token.length >= 500);
   
   return token && token.length >= 500 ? <CheckoutPage page="Checkout" /> : <Login />;
 }

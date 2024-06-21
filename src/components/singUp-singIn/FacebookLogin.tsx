@@ -12,7 +12,7 @@ const FacebookLogin = () => {
       localStorage.setItem("accessToken", token);
       return navigate("/home");
     }
-    console.log("Facebook auth:" + auth);
+    // console.log("Facebook auth:" + auth);
   }
   return (
     <button onClick={handleFacebookLogin}>
