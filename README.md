@@ -15,14 +15,15 @@ Furniro é uma aplicação de e-commerce que permite aos usuários navegar, adic
 ## Tecnologias Utilizadas
 
 - **Frontend**:
+  
   - [React](https://reactjs.org/)
   - [Redux](https://redux.js.org/)
   - [Tailwind CSS](https://tailwindcss.com/)
   - [Splide](https://splidejs.com/) (para carrossel de imagens)
   - [React Hook Form](https://react-hook-form.com/) (para gerenciamento de formulários)
   - [Zod](https://zod.dev/) (para validação de formulários)
+    
 - **Backend**:
-  - [JSON Server](https://github.com/typicode/json-server) (para simular uma API REST)
   - API para busca de endereço por CEP
 
 ## Como Executar o Projeto
@@ -36,11 +37,11 @@ Furniro é uma aplicação de e-commerce que permite aos usuários navegar, adic
 
 1. Clone o repositório:
    ```sh
-   git clone https://github.com/seu-usuario/furniro-ecommerce.git
+   git clone https://github.com/DaniloSalvato/Furniro
    ```
 2. Navegue até o diretório do projeto::
    ```sh
-   cd furniro-ecommerce
+   cd furniro
    ```
 3. Instale as dependências:
    ```sh
@@ -51,23 +52,13 @@ Furniro é uma aplicação de e-commerce que permite aos usuários navegar, adic
    ```sh
    yarn install
    ```
-   
-4. Inicie o JSON Server:
-    ```sh
-    npx json-server --watch db.json --port 5000
 
-    ```
-
-5. Em um novo terminal, inicie a aplicação:
+4.  inicie a aplicação:
    ```sh
-   npm start
+   npm run dev
    ```
 
-    # ou
-   ```sh
-    yarn start
 
-   ```
 
 ### Os requisitos **OBRIGATÓRIOS** são:
 
