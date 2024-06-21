@@ -42,7 +42,7 @@ const ProductDetail = () => {
         tags={item.tags}
         quantity={item.quantity}
       />
-      <Related />
+      <Related {...item} />
     </div>
   );
 };

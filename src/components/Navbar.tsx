@@ -1,17 +1,36 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/reducers";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Item } from "../types/Item";
 
 import Cart from "./CartComponents/Cart";
 import { formatRupiah, totalAmount } from "../utils/utils";
+import { Logout } from "../Auth/firebase";
 
 const Navbar = () => {
   const [navBarExpanded, setNavBarExpanded] = useState<boolean>(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLogginOutOpen, setIsLogginOutOpen] = useState(false);
+
+  const navigate = useNavigate()
 
   const { cartItems } = useSelector((state: RootState) => state.cart);
+
+  const handleLogout = () => {
+    Logout();
+    localStorage.removeItem('accessToken');
+    navigate("/home")
+  };
+
+  const handleLogin = () => {
+    navigate("/login")
+  };
+
+
+  const handleLogoutBtnClick = () => {
+    setIsLogginOutOpen((prevState) => !prevState);
+  };
 
   const handleMenuBtnClick = () => {
     setNavBarExpanded((prevState) => !prevState);
@@ -25,14 +44,14 @@ const Navbar = () => {
     <header className="flex items-center justify-between w-full px-3 md:px-6 md:pr-24 py-4 font-poppins text-black font-medium">
       {/* logo */}
       <Link to={"/home"}>
-      <div className="flex items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">
-        <img
-          className="mr-2"
-          src="https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg"
-          alt="Furniro logo"
-        />
-        <h1 className="font-montserrat font-bold text-4.5xl">Furniro</h1>
-      </div>
+        <div className="flex items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+          <img
+            className="mr-2"
+            src="https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg"
+            alt="Furniro logo"
+          />
+          <h1 className="font-montserrat font-bold text-4.5xl">Furniro</h1>
+        </div>
       </Link>
 
       {/* navegação */}
@@ -57,6 +76,7 @@ const Navbar = () => {
 
           <li className="flex gap-4 md:hidden justify-center items-center">
             <img
+              onClick={handleLogoutBtnClick}
               className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
               src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
               alt="profile-icon"
@@ -75,6 +95,7 @@ const Navbar = () => {
       {/* cart */}
       <div className="hidden gap-8 md:flex">
         <img
+          onClick={handleLogoutBtnClick}
           className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
           alt="profile-icon"
@@ -168,10 +189,25 @@ const Navbar = () => {
             </div>
           </>
         )}
+        {isLogginOutOpen && (
+          <>
+            <div className="fixed inset-0 z-40"
+            onClick={handleLogoutBtnClick}></div>
+            <div className="absolute w-20 right-44 top-16 text-white bg-customYellow-900 px-2 py-3 z-50 rounded-t">
+              <button onClick={handleLogout} className="font-poppins text-center">Logout</button>
+            </div>
+            <div className="absolute w-20 right-44 top-28 text-white bg-customYellow-900 px-2 py-3 z-50 rounded-b">
+              <button onClick={handleLogin} className="font-poppins text-center">Login</button>
+            </div>
+          </>
+        )}
       </div>
 
       {/* burguer */}
-      <button className="inline-block md:hidden transform transition-transform duration-200 hover:scale-105" onClick={handleMenuBtnClick}>
+      <button
+        className="inline-block md:hidden transform transition-transform duration-200 hover:scale-105"
+        onClick={handleMenuBtnClick}
+      >
         <img
           src={
             navBarExpanded

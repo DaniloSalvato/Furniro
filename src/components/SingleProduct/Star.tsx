@@ -21,7 +21,7 @@ const Star = ({ stars }: Star) => {
   }
 
   return (
-    <div className="flex pr-8 border-r border-customBlack-800">
+    <div className="flex w-28 pr-9 border-r border-customBlack-800">
       {starArray.map((star, index) => (
         <img key={index} src={star} />
       ))}

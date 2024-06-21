@@ -210,7 +210,7 @@ const BillingDetails = () => {
                 id="additionalInfo"
                 {...register("additionalInfo")}
                 placeholder="Additional information"
-                className="border w-full h-12 rounded-md mt-6 mb-20 font-poppins font-normal text-base"
+                className="border w-full h-12 rounded-md mt-6 mb-20 pl-3 font-poppins font-normal text-base"
                 type="text"
               />
             </div>
@@ -305,7 +305,7 @@ const BillingDetails = () => {
                     </div>
                   </fieldset>
                   {errors.paymentMethod && (
-                    <p className="text-red-600 text-xs">
+                    <p className="font-poppins text-red-600 text-xs">
                       {errors.paymentMethod.message}
                     </p>
                   )}

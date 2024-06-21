@@ -10,10 +10,9 @@ const FacebookLogin = () => {
     if (auth) {
       const token = await auth.user.getIdToken();
       localStorage.setItem("accessToken", token);
-      // console.log(auth);
       return navigate("/home");
     }
-    // console.log("google auth:" + auth);
+    console.log("Facebook auth:" + auth);
   }
   return (
     <button onClick={handleFacebookLogin}>
