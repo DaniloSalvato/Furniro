@@ -3,7 +3,6 @@ import { Item } from "../../types/Item";
 import { removeItemFromCart } from "../../redux/thunks/cart";
 
 const Cart = ({ id, title, image, value, quantity }: Item) => {
-  console.log('quantityCart', quantity);
   
   const dispatch = useDispatch()
   return (

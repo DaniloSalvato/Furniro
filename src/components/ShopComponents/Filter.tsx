@@ -8,7 +8,7 @@ type Pagination = {
   setFilter: (e: string) => void;
   totalItems: number;
   sort:string
-  setSort: (e: string) => void;
+  handleSortChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const Filter = ({
@@ -19,7 +19,7 @@ const Filter = ({
   setFilter,
   totalItems,
   sort,
-  setSort,
+  handleSortChange
 }: Pagination) => {
   const [search, setSearch] = useState("");
   const [value, setValue] = useState<number>(itemsPerPage);
@@ -28,10 +28,6 @@ const Filter = ({
   const handleSearchProduct = (e: ChangeEvent<HTMLInputElement>) => {
     const product = e.target.value;
     product ? setSearch(product) : setSearch("");
-  };
-
-  const handleFilter = () => {
-    setIsDropdownOpen(!isDropdownOpen);
   };
 
   useEffect(() => {
@@ -47,6 +43,10 @@ const Filter = ({
     setItemsPerPage(value);
   }, [value, setItemsPerPage]);
 
+  const handleDropdownClick = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="flex bg-customBeije-500 py-6 justify-around flex-wrap md:flex-nowrap relative">
       <div className="flex w-4/5 md:w-full justify-center items-center flex-wrap md:mt-0">
@@ -55,21 +55,24 @@ const Filter = ({
           alt="filter"
         />
         <button
-          onClick={handleFilter}
+          onClick={handleDropdownClick}
           className="font-poppins font-normal text-xl text-black ml-4 cursor-pointer transition-transform duration-200 hover:scale-105 hover:underline"
         >
           Filter
         </button>
 
         {isDropdownOpen && (
-          <div className="absolute mt-2 bg-white border rounded shadow-lg p-4 z-50">
-            <label className="block mb-2">Ordenar por:</label>
+          <div className="absolute top-24 md:top-20 md:left-52 bg-customBeije-500 border rounded shadow-lg p-4 z-50">
+            <label className="font-poppins block mb-2">Sort by:</label>
             <select
-              value={sort} onChange={(e) => setSort(e.target.value)}
+              value={sort} onChange={handleSortChange}
               className="font-poppins text-black p-2 border rounded"
             >
-              <option value="Asc">A-z</option>
-              <option value="Desc">Z-a</option>
+              <option className="font-poppins" value="">Select</option>
+              <option className="font-poppins" value="Asc">A-z</option>
+              <option className="font-poppins" value="Desc">Z-a</option>
+              <option className="font-poppins" value="Biggest">Biggest price</option>
+              <option className="font-poppins" value="Lowest">Lowest price</option>
             </select>
           </div>
         )}
@@ -87,7 +90,7 @@ const Filter = ({
         />
 
         <div className="mt-5 md:mt-0 md:border-l md:border-black md:ml-5 md:pl-6 flex-wrap">
-          <p className="">
+          <p className="font-poppins">
             Showing {firstItem}–{lastItem} of {totalItems} results
           </p>
         </div>

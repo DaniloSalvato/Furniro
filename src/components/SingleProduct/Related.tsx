@@ -3,25 +3,33 @@ import { useState } from "react";
 import Card from "../GenericComponents/Card";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
+import { Item } from "../../types/Item";
 
-
-const Related = () => {
+const Related = ({category}:Item) => {
+  
   const [visibleProducts, setVisibleProducts] = useState(4);
 
   const itemsState = useSelector((state: RootState) => state.items)
 
+ 
+
+  
+  const itemsRelated = itemsState.items.filter(item => item.category === category)
+
+
+
+  const displayedProducts = itemsRelated.slice(0, visibleProducts);
+
   const showMoreProducts = () => {
     setVisibleProducts((prevVisible) => prevVisible + 4);
   };
-
-  const displayedProducts = itemsState.items.slice(0, visibleProducts);
 
   return (
     <div className="w-full flex flex-col justify-center items-center border-t border-t-customBlack-950 pt-16">
       <h1 className="font-poppins font-medium text-4xl text-black">
         Related Products
       </h1>
-      <div className="max-w-screen-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid- gap-8 mt-10">
+      <div className="gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
         {displayedProducts.map((item) => (
           <Card
             key={item.id}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../../redux/reducers";
@@ -13,9 +13,30 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
   const [offSet, setOffSet] = useState(0);
-  const [sort, setSort] = useState("All")
+
+  const [sortOrder, setSortOrder] = useState('');
 
   const itemsState = useSelector((state: RootState) => state.items);
+  const [items, setItems] = useState<Item[]>(itemsState.items);
+
+
+  const handleSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const order = e.target.value;
+    setSortOrder(order);
+
+    const sortedItems = [...itemsState.items]
+
+    if (order === 'Asc') {
+      sortedItems.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (order === 'Desc') {
+      sortedItems.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (order === 'Biggest') {
+      sortedItems.sort((a, b) => b.value - a.value);
+    } else if (order === 'Lowest') {
+      sortedItems.sort((a, b) => a.value - b.value);
+    }
+    setItems(sortedItems);
+  };
 
   const lastItem = currentPage * itemsPerPage;
   const firstItem = lastItem - itemsPerPage;
@@ -30,8 +51,8 @@ const Products = () => {
         setItemsPerPage={setItemsPerPage}
         setFilter={setFilter}
         totalItems={totalItems}
-        sort={sort}
-        setSort={setSort}
+        sort={sortOrder}
+        handleSortChange={handleSortChange}
       />
       <div className="w-full flex flex-col justify-center items-center mb-12">
         <h1 className="font-poppins font-bold text-4xl text-center text-customBlack-500 mt-12 mb-10">
@@ -39,30 +60,29 @@ const Products = () => {
         </h1>
         <div className="gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center ">
           {itemsState.items &&
-            itemsState.items
-              .filter((product) =>
-                product.title.toLowerCase().includes(filter.toLowerCase())
+            items
+              .filter((item) =>
+                item.title.toLowerCase().includes(filter.toLowerCase())
               )
-              .sort((a, b) =>sort === "Asc" ? a.title.localeCompare(b.title): b.title.localeCompare(a.title))
               .slice(firstItem, lastItem)
-              .map((product: Item) => (
+              .map((item: Item) => (
                 <Card
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  subtitle={product.subtitle}
-                  about={product.about}
-                  description={product.description}
-                  image={product.image}
-                  star={product.star}
-                  value={product.value}
-                  inSale={product.inSale}
-                  percentage={product.percentage}
-                  isNew={product.isNew}
-                  sku={product.sku}
-                  category={product.category}
-                  tags={product.tags}
-                  quantity={product.quantity}
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  about={item.about}
+                  description={item.description}
+                  image={item.image}
+                  star={item.star}
+                  value={item.value}
+                  inSale={item.inSale}
+                  percentage={item.percentage}
+                  isNew={item.isNew}
+                  sku={item.sku}
+                  category={item.category}
+                  tags={item.tags}
+                  quantity={item.quantity}
                 />
               ))}
         </div>

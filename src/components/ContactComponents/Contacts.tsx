@@ -107,7 +107,7 @@ const Contacts = () => {
             <div className="mb-4 mt-10 md:mt-0">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="font-poppins block text-sm font-medium text-gray-700"
               >
                 Your name
               </label>
@@ -115,10 +115,10 @@ const Contacts = () => {
                 id="name"
                 {...register("name")}
                 placeholder="Abc"
-                className="mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                className="font-poppins font-medium text-base mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.name && (
-                <p className="text-red-600 text-xs mt-1">
+                <p className="font-poppins text-red-600 text-xs mt-1">
                   {errors.name.message}
                 </p>
               )}
@@ -127,7 +127,7 @@ const Contacts = () => {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="font-poppins block text-sm font-medium text-gray-700"
               >
                 Email address
               </label>
@@ -136,10 +136,10 @@ const Contacts = () => {
                 {...register("email")}
                 type="email"
                 placeholder="Abc@def.com"
-                className="mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                className="font-poppins font-medium text-base mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.email && (
-                <p className="text-red-600 text-xs mt-1">
+                <p className="font-poppins text-red-600 text-xs mt-1">
                   {errors.email.message}
                 </p>
               )}
@@ -148,7 +148,7 @@ const Contacts = () => {
             <div className="mb-4">
               <label
                 htmlFor="subject"
-                className="block text-sm font-medium text-gray-700"
+                className="font-poppins block text-sm font-medium text-gray-700"
               >
                 Subject
               </label>
@@ -156,10 +156,10 @@ const Contacts = () => {
                 id="subject"
                 {...register("subject")}
                 placeholder="This is an optional"
-                className="mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                className="font-poppins font-medium text-base mt-4 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.subject && (
-                <p className="text-red-600 text-xs mt-1">
+                <p className="font-poppins text-red-600 text-xs mt-1">
                   {errors.subject.message}
                 </p>
               )}
@@ -168,7 +168,7 @@ const Contacts = () => {
             <div className="mb-4">
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
+                className="font-poppins block text-sm font-medium text-gray-700"
               >
                 Message
               </label>
@@ -176,10 +176,10 @@ const Contacts = () => {
                 id="message"
                 {...register("message")}
                 placeholder="Hi! i’d like to ask about"
-                className="mt-4 block w-full px-3 py-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
+                className="font-poppins font-medium text-base mt-4 block w-full px-3 py-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-customYellow-900 focus:border-customYellow-900 sm:text-sm"
               />
               {errors.message && (
-                <p className="text-red-600 text-xs mt-1">
+                <p className="font-poppins text-red-600 text-xs mt-1">
                   {errors.message.message}
                 </p>
               )}

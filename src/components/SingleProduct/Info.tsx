@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Item } from "../../types/Item";
 import { formatRupiah } from "../../utils/utils";
 import NumberInput from "../GenericComponents/NumberInput";
@@ -18,27 +19,26 @@ const Info = ({
   sku,
   category,
   tags,
-  quantity
+  quantity,
 }: Item) => {
- 
-    const item = {
-      id,
-      title,
-      subtitle,
-      description,
-      about,
-      image,
-      star,
-      value,
-      inSale,
-      percentage,
-      isNew,
-      sku,
-      category,
-      tags,
-      quantity,
-    };
-  
+  const item = {
+    id,
+    title,
+    subtitle,
+    description,
+    about,
+    image,
+    star,
+    value,
+    inSale,
+    percentage,
+    isNew,
+    sku,
+    category,
+    tags,
+    quantity,
+  };
+
   return (
     <div className="flex w-4/5 h-full flex-col ml-10 mt-10 md:mt-3 lg:w-1/2 md:ml-20">
       <h1 className="font-poppins font-normal text-4xl ">{title}</h1>
@@ -47,12 +47,12 @@ const Info = ({
       </p>
       <div className="flex mt-4">
         <Star stars={star} />
-        <p className="font-poppins font-normal text-sm text-customBlack-800 ml-5 transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+        <p className="font-poppins font-normal text-sm text-customBlack-800 ml-2 transform transition-transform duration-200 hover:scale-105 cursor-pointer">
           5 Customer Review
         </p>
       </div>
       <p className="font-poppins font-normal text-sm text-black mt-4">
-        {about}
+        {description}
       </p>
       <p className="font-poppins font-normal text-sm text-customBlack-800 mt-6 ">
         Size
@@ -61,8 +61,12 @@ const Info = ({
         <p className="flex h-8 w-8 justify-center items-center text-white bg-customYellow-900 rounded-md transform transition-transform duration-200 hover:scale-105 cursor-pointer">
           L
         </p>
-        <p className="flex h-8 w-8 justify-center items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">XL</p>
-        <p className="flex h-8 w-8 justify-center items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">XS</p>
+        <p className="flex h-8 w-8 justify-center items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+          XL
+        </p>
+        <p className="flex h-8 w-8 justify-center items-center transform transition-transform duration-200 hover:scale-105 cursor-pointer">
+          XS
+        </p>
       </div>
       <p className="font-poppins font-normal text-sm text-customBlack-800 mt-5">
         Color
@@ -73,7 +77,7 @@ const Info = ({
         <div className="h-8 w-8 bg-customYellow-900 rounded-full transform transition-transform duration-200 hover:scale-105 cursor-pointer"></div>
       </div>
       <div className="flex mt-8">
-        <NumberInput id={id} item={item} showButton/>     
+        <NumberInput id={id} item={item} showButton />
       </div>
       <div className="">
         <div className="flex gap-4 mt-14 pt-10 font-poppins font-normal text-sm text-customBlack-800 border-t border-customBlack-800">
@@ -94,9 +98,27 @@ const Info = ({
             <div>{category}</div>
             <div>{tags.join(", ")}</div>
             <div className="flex gap-4">
-              <img className="transform transition-transform duration-200 hover:scale-105 cursor-pointer" src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/facebook-filled.svg" alt="face-icon" />
-              <img className="transform transition-transform duration-200 hover:scale-105 cursor-pointer" src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/linkedin-filled.svg" alt="linkedin-icon" />
-              <img className="transform transition-transform duration-200 hover:scale-105 cursor-pointer" src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/twitter-filled.svg" alt="twitter-icon" />
+              <Link to="https://www.facebook.com/">
+                <img
+                  className="transform transition-transform duration-200 hover:scale-105 cursor-pointer"
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/facebook-filled.svg"
+                  alt="face-icon"
+                />
+              </Link>
+              <Link to="https://www.linkedin.com">
+                <img
+                  className="transform transition-transform duration-200 hover:scale-105 cursor-pointer"
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/linkedin-filled.svg"
+                  alt="linkedin-icon"
+                />
+              </Link>
+              <Link to="https://x.com/home?lang=pt-br">
+                <img
+                  className="transform transition-transform duration-200 hover:scale-105 cursor-pointer"
+                  src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/twitter-filled.svg"
+                  alt="twitter-icon"
+                />
+              </Link>
             </div>
           </div>
         </div>

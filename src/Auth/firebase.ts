@@ -5,7 +5,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
-  FacebookAuthProvider
+  FacebookAuthProvider,
+  signOut,
 } from "firebase/auth";
 
 const auth = getAuth(app);
@@ -43,9 +44,9 @@ export async function UserLogin(email: string, password: string) {
 }
 
 export async function GoogleAuth() {
- const result = await signInWithPopup(auth, provider)
+  const result = await signInWithPopup(auth, provider);
 
- return result
+  return result;
   //.then((result) => {
   //   // This gives you a Google Access Token. You can use it to access the Google API.
   //   const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -64,11 +65,16 @@ export async function GoogleAuth() {
   //   const credential = GoogleAuthProvider.credentialFromError(error);
   //   // ...
   // });
-
 }
 
+export async function FacebookAuth() {
+  const result = await signInWithPopup(auth, providerFacebook);
+  return result;
+}
 
-export async function FacebookAuth(){
-  const result = await signInWithPopup(auth, providerFacebook)
-  return result
+export async function Logout() {
+  signOut(auth)
+    .then(() => {console.log('Logout')})
+    .catch((error) => { console.log(error);
+    });
 }

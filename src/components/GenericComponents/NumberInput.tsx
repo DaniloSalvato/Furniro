@@ -31,7 +31,6 @@ const NumberInput = ({ id, item, showButton }: NumberInputProps) => {
       } else if (operation === "decrement" && prevQtd > 0) {
         newQuantity = prevQtd - 1;     
       }
-      console.log("new quantity",newQuantity);
       
       return newQuantity;
     });

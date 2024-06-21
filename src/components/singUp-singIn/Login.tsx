@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginData, LoginSchema } from "../../schemas/loginSchema";
 
+
 const Login = () => {
   const {
     register,
@@ -27,7 +28,7 @@ const Login = () => {
       if (result) {
         const token = await result.user.getIdToken();
         localStorage.setItem("accessToken", token);
-        // console.log(result);
+       console.log(result);
         return navigate("/home");
       }
       
@@ -54,7 +55,7 @@ const Login = () => {
             setError('email', { type: 'manual', message: 'Too many attempts. Try again later.' });
             break;
           case 'auth/invalid-credential':
-            setError('email', { type: 'manual', message: 'Invalid credential' });
+            setError('email', { type: 'manual', message: 'Incorrect e-mail or password' });
             break;
           default:
             setError('email', { type: 'manual', message: error.message });
