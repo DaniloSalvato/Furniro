@@ -1,6 +1,4 @@
-# Furniro - E-commerce Store
-
-![Furniro](https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg)
+# ![Furniro](https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg) Furniro - E-commerce Store
 
 ## Sobre o Projeto
 
@@ -24,7 +22,7 @@ Furniro é uma aplicação de e-commerce que permite aos usuários navegar, adic
   - [React Hook Form](https://react-hook-form.com/) (para gerenciamento de formulários)
   - [Zod](https://zod.dev/) (para validação de formulários)
 - **Backend**:
-- [JSON Server](https://github.com/typicode/json-server) (para simular uma API REST)
+  - [JSON Server](https://github.com/typicode/json-server) (para simular uma API REST)
   - API para busca de endereço por CEP
 
 ## Como Executar o Projeto
