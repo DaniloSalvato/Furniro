@@ -49,27 +49,27 @@ Furniro é uma aplicação de e-commerce que permite aos usuários navegar, adic
    npm install
    ```
    # ou
+
+   ```sh
    yarn install
-
-````
+   ```
+   
 4. Inicie o JSON Server:
-```sh
-npx json-server --watch db.json --port 5000
+    ```sh
+    npx json-server --watch db.json --port 5000
 
-````
+    ```
 
 5. Em um novo terminal, inicie a aplicação:
    ```sh
    npm start
    ```
 
-# ou
+    # ou
+   ```sh
+    yarn start
 
-yarn start
-
-```
-
-```
+   ```
 
 ### Os requisitos **OBRIGATÓRIOS** são:
 
@@ -89,7 +89,6 @@ yarn start
 - A aplicação deve estar responsiva;
 - Pode fazer o uso de biblioteca externa (estritamente **styled-components ou Tailwind)** para estilização;
 - Testes unitários com pelo menos 70% de cobertura;
-- Crie um repositório privado em seu Github e adicione os instrutores como colaboradores do projeto até as **17h30 do dia 10/06**;
 - Adicione um README ao seu projeto, com instruções para inicializar e rodar sua aplicação;
 - Faça pequenos commits e use Convencionais Commits para manter seu repositório organizado.
 
