@@ -1,4 +1,4 @@
-# ![Furniro](https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg) Furniro - E-commerce Store
+# ![Furniro](https://furniro-ds.s3.us-east-2.amazonaws.com/utils/logo.svg) Furniro Store
 
 ## Sobre o Projeto
 
