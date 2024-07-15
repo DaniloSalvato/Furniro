@@ -42,6 +42,7 @@ export default {
       },
       spacing: {
         '2sm':"0.5px",
+        195: "195px",
         card: "446px",
         single: "500px",
         cartW: "417px",

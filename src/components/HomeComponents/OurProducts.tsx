@@ -38,23 +38,7 @@ const OurProducts = () => {
       <div className="gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center ">
         {itemsState.items && displayedProducts.map((item) => (
            <div key={item.id}>
-            <Card
-              id={item.id}
-              title={item.title}
-              subtitle={item.subtitle}
-              about={item.about}
-              description={item.description}
-              image={item.image}
-              star={item.star}
-              value={item.value}
-              inSale={item.inSale}
-              percentage={item.percentage}
-              isNew={item.isNew}
-              sku={item.sku}
-              category={item.category}
-              tags={item.tags}
-              quantity={item.quantity}
-            /> 
+            <Card {...item}/> 
             </div>
           ))}
       </div>

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,16 +12,17 @@ import { fetchAddress } from "../../redux/thunks/address";
 import { CreateNewOrder } from "../../redux/thunks/order";
 
 const BillingDetails = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { cartItems } = useSelector((state: RootState) => state.cart);
-  const address = useSelector((state:RootState) => state.address)
+  const address = useSelector((state: RootState) => state.address);
 
   const {
     register,
     handleSubmit,
     setError,
     setValue,
+    clearErrors,
     reset,
     formState: { errors },
   } = useForm<BillingData>({
@@ -32,31 +33,41 @@ const BillingDetails = () => {
   const onSubmit = (data: BillingData) => {
     const order = {
       ...data,
-      add: data.add || '',
-      company: data.company || '',
-      additionalInfo: data.additionalInfo || '',
+      add: data.add || "",
+      company: data.company || "",
+      additionalInfo: data.additionalInfo || "",
       items: cartItems,
       totalAmount: totalAmount(cartItems),
     };
 
-    dispatch(CreateNewOrder(order))
+    dispatch(CreateNewOrder(order));
     reset();
     toast.success("Order sended!");
-    
   };
+
+  useEffect(() => {
+    if (address.loading) return;
+    if (address.error) {
+      setError("zip", { type: "manual", message: "Invalid Zip" });
+      return;
+    }
+
+    clearErrors('zip')
+
+    const convertedCEP = convertUfToState(address.address.uf);
+
+    convertedCEP
+      ? setValue("province", convertedCEP)
+      : setError("province", { type: "manual", message: convertedCEP });
+
+    setValue("street", address.address.logradouro);
+    setValue("city", address.address.localidade);
+  }, [address]);
 
   const checkCEP = (e: ChangeEvent<HTMLInputElement>) => {
     const cep = e.target.value.replace(/\D/g, "");
-    
-    dispatch(fetchAddress(cep))
 
-    const convertedCEP = convertUfToState(address.address.uf)
-
-    convertedCEP ? setValue('province', convertedCEP) : setError('province', { type: 'manual', message: convertedCEP });
-
-    setValue('street', address.address.logradouro)
-    setValue('city', address.address.localidade)
-    
+    dispatch(fetchAddress(cep));
   };
 
   return (
@@ -119,7 +130,9 @@ const BillingDetails = () => {
                 onBlur={checkCEP}
               />
               {errors.zip && (
-                <p className="text-red-600 text-xs font-normal">{errors.zip.message}</p>
+                <p className="text-red-600 text-xs font-normal">
+                  {errors.zip.message}
+                </p>
               )}
             </div>
 
@@ -132,7 +145,9 @@ const BillingDetails = () => {
                 type="text"
               />
               {errors.country && (
-                <p className="text-red-600 text-xs font-normal">{errors.country.message}</p>
+                <p className="text-red-600 text-xs font-normal">
+                  {errors.country.message}
+                </p>
               )}
             </div>
 
@@ -145,7 +160,9 @@ const BillingDetails = () => {
                 type="text"
               />
               {errors.street && (
-                <p className="text-red-600 text-xs font-normal">{errors.street.message}</p>
+                <p className="text-red-600 text-xs font-normal">
+                  {errors.street.message}
+                </p>
               )}
             </div>
 
@@ -158,7 +175,9 @@ const BillingDetails = () => {
                 type="text"
               />
               {errors.city && (
-                <p className="text-red-600 text-xs font-normal">{errors.city.message}</p>
+                <p className="text-red-600 text-xs font-normal">
+                  {errors.city.message}
+                </p>
               )}
             </div>
 
@@ -201,7 +220,9 @@ const BillingDetails = () => {
                 type="text"
               />
               {errors.email && (
-                <p className="text-red-600 text-xs font-normal">{errors.email.message}</p>
+                <p className="text-red-600 text-xs font-normal">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
@@ -291,7 +312,12 @@ const BillingDetails = () => {
                         {...register("paymentMethod")}
                         className="accent-black peer opacity-55 checked:opacity-100"
                       />
-                      <label className="peer-checked:opacity-100 opacity-55" htmlFor="Direct">Direct Bank Transfer</label>
+                      <label
+                        className="peer-checked:opacity-100 opacity-55"
+                        htmlFor="Direct"
+                      >
+                        Direct Bank Transfer
+                      </label>
                     </div>
                     <div className="flex items-center gap-2 mt-3">
                       <input
@@ -301,7 +327,12 @@ const BillingDetails = () => {
                         {...register("paymentMethod")}
                         className="accent-black peer opacity-55 checked:opacity-100"
                       />
-                      <label className="peer-checked:opacity-100 opacity-55" htmlFor="Cash">Cash On Delivery</label>
+                      <label
+                        className="peer-checked:opacity-100 opacity-55"
+                        htmlFor="Cash"
+                      >
+                        Cash On Delivery
+                      </label>
                     </div>
                   </fieldset>
                   {errors.paymentMethod && (

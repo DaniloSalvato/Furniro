@@ -21,13 +21,7 @@ import { store, persistor } from "./redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Login from "./components/singUp-singIn/Login";
 import Register from "./components/singUp-singIn/Register";
-
-const privateRoute = () => {
-
-  const token= localStorage.getItem('accessToken')
-  
-  return token && token.length >= 500 ? <CheckoutPage page="Checkout" /> : <Login />;
-}
+import PrivateRouter from "./components/PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: privateRoute(),
+        element: <PrivateRouter to="/login?redirectURL=/checkout"> <CheckoutPage page="Checkout" /></PrivateRouter>,
       },
       {
         path: "contact",

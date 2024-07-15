@@ -13,20 +13,21 @@ const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLogginOutOpen, setIsLogginOutOpen] = useState(false);
 
-  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  const navigate = useNavigate();
 
   const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const handleLogout = () => {
     Logout();
-    localStorage.removeItem('accessToken');
-    navigate("/home")
+    localStorage.removeItem("user");
+    navigate("/home");
   };
 
   const handleLogin = () => {
-    navigate("/login")
+    navigate("/login");
   };
-
 
   const handleLogoutBtnClick = () => {
     setIsLogginOutOpen((prevState) => !prevState);
@@ -75,12 +76,47 @@ const Navbar = () => {
           </li>
 
           <li className="flex gap-4 md:hidden justify-center items-center">
-            <img
-              onClick={handleLogoutBtnClick}
-              className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
-              src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
-              alt="profile-icon"
-            />
+            {user.img ? (
+              <img
+                onClick={handleLogoutBtnClick}
+                className="size-8 rounded-full cursor-pointer transform transition-transform duration-200 hover:scale-105"
+                src={user.img}
+                alt="profile-icon"
+              />
+            ) : (
+              <img
+                onClick={handleLogoutBtnClick}
+                className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
+                src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
+                alt="profile-icon"
+              />
+            )}
+
+            {isLogginOutOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-40"
+                  onClick={handleLogoutBtnClick}
+                ></div>
+                <div className="absolute w-20 right-44 top-16 text-white bg-customYellow-900 px-2 py-3 z-50 rounded-t">
+                  <button
+                    onClick={handleLogout}
+                    className="font-poppins text-center"
+                  >
+                    Logout
+                  </button>
+                </div>
+                <div className="absolute w-20 right-44 top-28 text-white bg-customYellow-900 px-2 py-3 z-50 rounded-b">
+                  <button
+                    onClick={handleLogin}
+                    className="font-poppins text-center"
+                  >
+                    Login
+                  </button>
+                </div>
+              </>
+            )}
+
             <NavLink to={"/cart"}>
               <img
                 className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
@@ -93,13 +129,23 @@ const Navbar = () => {
       </nav>
 
       {/* cart */}
-      <div className="hidden gap-8 md:flex">
-        <img
-          onClick={handleLogoutBtnClick}
-          className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
-          src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
-          alt="profile-icon"
-        />
+      <div className="hidden gap-8 md:flex justify-center items-center">
+        {user.name && <div className="hidden lg:flex">{user.name}</div>}
+        {user.img ? (
+          <img
+            onClick={handleLogoutBtnClick}
+            className="size-8 rounded-full cursor-pointer transform transition-transform duration-200 hover:scale-105"
+            src={user.img}
+            alt="profile-icon"
+          />
+        ) : (
+          <img
+            onClick={handleLogoutBtnClick}
+            className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
+            src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/profile.svg"
+            alt="profile-icon"
+          />
+        )}
         <img
           className="cursor-pointer transform transition-transform duration-200 hover:scale-105"
           src="https://furniro-ds.s3.us-east-2.amazonaws.com/icons/cart.svg"
@@ -191,13 +237,25 @@ const Navbar = () => {
         )}
         {isLogginOutOpen && (
           <>
-            <div className="fixed inset-0 z-40"
-            onClick={handleLogoutBtnClick}></div>
+            <div
+              className="fixed inset-0 z-40"
+              onClick={handleLogoutBtnClick}
+            ></div>
             <div className="absolute w-20 right-44 top-16 text-white bg-customYellow-900 px-2 py-3 z-50 rounded-t">
-              <button onClick={handleLogout} className="font-poppins text-center">Logout</button>
+              <button
+                onClick={handleLogout}
+                className="font-poppins text-center"
+              >
+                Logout
+              </button>
             </div>
             <div className="absolute w-20 right-44 top-28 text-white bg-customYellow-900 px-2 py-3 z-50 rounded-b">
-              <button onClick={handleLogin} className="font-poppins text-center">Login</button>
+              <button
+                onClick={handleLogin}
+                className="font-poppins text-center"
+              >
+                Login
+              </button>
             </div>
           </>
         )}

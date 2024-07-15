@@ -4,7 +4,7 @@ import { formatRupiah } from "../../utils/utils";
 import { RootState } from "../../redux/reducers";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const CartItems = () => {
   const [windowSize, setWindowSize] = useState({
@@ -51,8 +51,8 @@ const CartItems = () => {
             </p>
           </div>
           <div className="xl:grid xl:grid-cols-5 xl:w-full xl:items-center xl:justify-center">
-            {cartItems.map((item) => (
-              <>
+            {cartItems.map((item,index) => (
+              <Fragment key={index}>
                 <img
                   className="xl:col-span-1 xl:col-start-1 xl:w-20 xl:h-20 xl:rounded-lg xl:m-2"
                   src={item.image}
@@ -67,9 +67,9 @@ const CartItems = () => {
                   {formatRupiah(item.value)}
                 </p>
 
-                <p className="xl:col-start-4 xl:m-2">
+                <div className="xl:col-start-4 xl:m-2">
                   <NumberInput id={item.id} />
-                </p>
+                </div>
 
                 <p className="xl:col-start-5 xl:m-2">
                   {formatRupiah(item.value * item.quantity)}
@@ -81,7 +81,7 @@ const CartItems = () => {
                   alt="trash"
                   className="xl:col-start-6 xl:h-5 xl:w-5 xl:m-6"
                 />
-              </>
+              </Fragment>
             ))}
           </div>
         </>
@@ -94,8 +94,8 @@ const CartItems = () => {
               </p>
             </div>
             <div className="flex flex-col w-4/5">
-              {cartItems.map((item) => (
-                <>
+              {cartItems.map((item,index) => (
+                <Fragment key={index}>
                   <div className="flex mt-8">
                     <img
                       key={item.id}
@@ -114,9 +114,9 @@ const CartItems = () => {
                         {formatRupiah(item.value)}
                       </p>
 
-                      <p className="sm:mt-3">
+                      <div className="sm:mt-3">
                         <NumberInput id={item.id} />
-                      </p>
+                      </div>
 
                       <p className="mt-2 sm:mt-5 border-t sm:pt-1">
                         {formatRupiah(item.value * item.quantity)}
@@ -131,7 +131,7 @@ const CartItems = () => {
                     
                     </div>
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
           </div>

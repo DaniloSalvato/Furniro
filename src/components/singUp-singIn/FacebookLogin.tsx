@@ -1,18 +1,24 @@
 import { FaFacebookSquare } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FacebookAuth } from "../../Auth/firebase";
 
 const FacebookLogin = () => {
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate();
+  const redirectURL = searchParams.get("redirectURL") || "/home" 
 
   async function handleFacebookLogin() {
     const auth = await FacebookAuth();
     if (auth) {
-      const token = await auth.user.getIdToken();
-      localStorage.setItem("accessToken", token);
-      return navigate("/home");
+      const newUser = {
+        name: auth.user.displayName || "",
+        img: auth.user.photoURL || "",
+        token: await auth.user.getIdToken(),
+      };
+
+      localStorage.setItem("user", JSON.stringify(newUser));
+      return navigate(redirectURL);
     }
-    // console.log("Facebook auth:" + auth);
   }
   return (
     <button onClick={handleFacebookLogin}>

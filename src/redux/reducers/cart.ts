@@ -22,9 +22,9 @@ const cartReducer = (
       const existingItem = state.cartItems.findIndex(
         (cartItem) => cartItem.id === item.id
       );
-
+      
       if (existingItem > -1) {
-        state.cartItems[existingItem].quantity = item.quantity;
+        state.cartItems[existingItem].quantity = item.quantity || state.cartItems[existingItem].quantity + 1;
       } else {
         return {
           ...state,

@@ -9,10 +9,10 @@ const Discover = () => {
         <div className="flex flex-1 w-full h-full items-center justify-center md:justify-start">
           
           <div className="bg-customYellow-100 w-4/5 h-2/5 md:w-5/6 md:h-5/6 lg:h-3/4 xl:h-2/3 2xl:h-2/4 px-6 md:px-5 lg:px-10 lg:mx-7 rounded-lg">
-            <h2 className="font-poppins font-semibold md:text-lg lg:text-base text-customBlack-300 tracking-widest pt-10">
+            <h1 className="font-poppins font-semibold md:text-lg lg:text-base text-customBlack-300 tracking-widest pt-10">
               New Arrival
-            </h2>
-            <p className=" font-poppins font-bold text-md md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-customYellow-900 mt-3 md:leading-6">
+            </h1>
+            <p className=" font-poppins font-bold text-md md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-customYellow-900 mt-3">
               Discover Our <br /> New Collection
             </p>
             <p className="font-poppins font-medium text-xs md:text-base lg:text-lg text-customBlack-300 mt-3 md:mb-5 lg:mb-70 xl:mb-10">

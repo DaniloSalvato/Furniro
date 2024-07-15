@@ -7,6 +7,7 @@ const Footer = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<emailData>({
     resolver: zodResolver(EmailSchema),
@@ -15,6 +16,7 @@ const Footer = () => {
 
   const handleSubscribe = (data: emailData) => {
     localStorage.setItem("email", data.email);
+    reset()
   };
   return (
     <>
