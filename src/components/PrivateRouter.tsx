@@ -1,16 +1,17 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { useAppSelector } from "../stores";
 
 type PrivateRouterProps = {
   children: React.ReactNode;
-  to?:string
+  to?: string;
 };
 
 const PrivateRouter = ({ children, to }: PrivateRouterProps) => {
+  const {user} = useAppSelector((state) => state.user);
+  console.log(user);
 
-    const user = JSON.parse(localStorage.getItem('user') || "{}")
-        
-    if(!user.token)return <Navigate to={to || "/login"} />
+  if (!user?.accessToken) return <Navigate to={to || "/login"} />;
 
   return <>{children}</>;
 };
