@@ -4,10 +4,11 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
+        "background-login":"url('./src/assets/utils/loginBackground.jpg')",
         "background-home":
-          "url('https://furniro-ds.s3.us-east-2.amazonaws.com/utils/home-img.png')",
+          "url('./src/assets/utils/home-img.png')",
         "background-panel":
-          "url('https://furniro-ds.s3.us-east-2.amazonaws.com/utils/process-image.png')",
+          "url('./src/assets/utils/process-image.png')",
       },
       blur: {
         xs: "3px",
@@ -42,6 +43,7 @@ export default {
       },
       spacing: {
         '2sm':"0.5px",
+        195: "195px",
         card: "446px",
         single: "500px",
         cartW: "417px",

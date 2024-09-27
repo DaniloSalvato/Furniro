@@ -1,4 +1,5 @@
-import { CartItem } from "../types/Cart";
+import { ItemType } from "../stores/slices/Items/type";
+
 
 const formatRupiah = (value: number , locale: string = "id-ID"): string => {
   const formatOptions: Intl.NumberFormatOptions = {
@@ -11,7 +12,7 @@ const formatRupiah = (value: number , locale: string = "id-ID"): string => {
   return new Intl.NumberFormat(locale, formatOptions).format(value);
 };
 
-const totalAmount = (items: CartItem[]):number => {
+const totalAmount = (items: ItemType[]):number => {
   const total = items.reduce((total, item) => {
     return total + item.value * item.quantity;
   }, 0);
