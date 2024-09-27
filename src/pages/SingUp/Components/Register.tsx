@@ -67,12 +67,12 @@ const Register = () => {
           className="flex flex-col w-full"
           onSubmit={handleSubmit(handleRegisterForm)}
         >
-          <FormComponents.Root>
-            <FormComponents.Title>Register</FormComponents.Title>
+          <FormComponents.Root variants="primary">
+            <FormComponents.Title variants="primary">Register</FormComponents.Title>
 
             <FormComponents.Container>
               <FormComponents.Label
-                className="flex w-full justify-start"
+                variants="primary"
                 htmlFor="email"
               >
                 Email
@@ -82,9 +82,7 @@ const Register = () => {
                 type="email"
                 id="email"
                 placeholder="E-mail"
-                color="primary"
-                area="primary"
-                className="flex w-full justify-center"
+                variants="primary"
               />
               {errors.email && (
                 <FormComponents.Error>
@@ -95,7 +93,7 @@ const Register = () => {
 
             <FormComponents.Container>
               <FormComponents.Label
-                className="flex w-full justify-start md:items-start"
+                variants="primary"
                 htmlFor="password"
               >
                 Password
@@ -106,9 +104,7 @@ const Register = () => {
                 type="password"
                 id="password"
                 placeholder="password"
-                color="primary"
-                area="primary"
-                className="flex w-full justify-center"
+                variants="primary"
               />
               {errors.password && (
                 <FormComponents.Error>
@@ -120,17 +116,14 @@ const Register = () => {
             <FormComponents.Container>
               <Button
                 type="submit"
-                color="primary"
-                size="primary"
-                className="mt-10"
+                variants="primary"
               >
                 Register
               </Button>
 
               <Link
                 to={"/Login"}
-                className="ml-1 underline hover:text-black"
-                type="submit"
+                className="underline hover:text-black"
               >
                 Back to Login
               </Link>

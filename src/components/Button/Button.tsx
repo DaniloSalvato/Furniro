@@ -4,30 +4,25 @@ import { tv, VariantProps } from "tailwind-variants";
 const button = tv({
   base: "bg-white text-black w-full",
   variants: {
-    color: {
-      primary: "bg-customYellow-900 text-white hover:text-black hover:bg-white rounded ",
+    variants: {
+      primary:
+        "bg-customYellow-900 text-white hover:text-black hover:bg-white rounded py-2 md:py-3",
       secondary:
-        "bg-red-700 text-white hover:text-black hover:bg-white rounded",
+        "flex justify-center items-center gap-2 bg-red-700 text-white hover:text-black hover:bg-white rounded px-10 py-2 md:px-5 md:py-3 lg:px-16",
       tertiary:
-        "bg-blue-500 text-white hover:text-black hover:bg-white rounded",
+        "flex justify-center items-center gap-2 bg-blue-500 text-white hover:text-black hover:bg-white rounded px-10 py-2 md:px-5 md:py-3 lg:px-16",
       quaternary:
-        "bg-white text-customYellow-900 border border-customYellow-900 hover:bg-customYellow-900 hover:text-white",
+        "bg-white text-customYellow-900 border border-customYellow-900 hover:bg-customYellow-900 hover:text-white px-20 py-3",
       fifth: "",
       sixth: "",
       seventh: "",
       eighth: "",
       ninth: "",
       tenth: "",
-    },
-    size: {
-      primary: "py-2",
-      secondary: "px-10 py-4 md:px-5 md:py-3 lg:px-16 lg:py-5",
-      tertiary: "px-5 py-2",
-      quaternary: "px-20 py-3",
-    },
+    }
   },
   defaultVariants: {
-    color: "primary",
+    variants: "primary",
   },
 });
 
@@ -38,15 +33,9 @@ type ButtonProps = {
 } & ComponentProps<"button"> &
   ButtonVariants;
 
-export const Button = ({
-  children,
-  color,
-  size,
-  className,
-  ...props
-}: ButtonProps) => {
+export const Button = ({ children, variants, ...props }: ButtonProps) => {
   return (
-    <button {...props} className={button({ color, size, className })}>
+    <button {...props} className={button({ variants })}>
       {children}
     </button>
   );

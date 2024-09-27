@@ -3,7 +3,7 @@ import UserCart from "./components/UserCart";
 
 const HeaderActions = () => {
   return (
-    <div className="flex md:gap-9 justify-center items-center">
+    <div className="flex gap-3 sm:gap-9 justify-center items-center">
       <UserMenu />
       <UserCart />
     </div>

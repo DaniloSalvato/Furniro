@@ -34,8 +34,8 @@ const ButtonGoogleLogin = () => {
       }
     }
     return (
-      <Button className="flex justify-center items-center w-full gap-2" type="button" color="secondary" size="primary" onClick={handleGoogleLogin}>
-        <span className="flex flex-nowrap">
+      <Button type="button" variants="secondary" onClick={handleGoogleLogin}>
+        <span>
           Login with
         </span>
         <FcGoogle className="size-5" />

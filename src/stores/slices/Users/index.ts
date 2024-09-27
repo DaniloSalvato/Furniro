@@ -10,11 +10,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, { payload }: PayloadAction<UserProps>) {
-      console.log(payload);
-      state.user = payload
+      state.user = payload;
+    },
+    logoutUser(state) {
+      state.user = {
+        uid: "",
+        displayName: "",
+        email: "",
+        photoURL: "",
+        accessToken: "",
+      };
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, logoutUser } = userSlice.actions;
 export const userReducer = userSlice.reducer;

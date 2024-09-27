@@ -15,7 +15,7 @@ const Navbar = ({ isOpen, onClick }: NavbarProps) => {
     data-[isopen=true]:absolute data-[isopen=true]:flex 
     data-[isopen=true]:items-center data-[isopen=true]:justify-center 
     data-[isOpen=true]:w-full 
-    data-[isopen=true]:top-[83px] data-[isopen=true]:right-0
+    data-[isopen=true]:top-[70px] data-[isopen=true]:right-0
     data-[isopen=true]:bg-customYellow-100
     data-[isopen=true]:z-50
     "

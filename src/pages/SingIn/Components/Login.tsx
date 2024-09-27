@@ -94,11 +94,11 @@ const Login = () => {
           onSubmit={handleSubmit(handleLoginForm)}
         >
           <FormComponents.Root>
-            <FormComponents.Title>Login</FormComponents.Title>
+            <FormComponents.Title variants="primary">Login</FormComponents.Title>
 
-            <FormComponents.Container>
+            <FormComponents.Container variants="primary">
               <FormComponents.Label
-                className="flex w-full justify-start"
+                variants="primary"
                 htmlFor="email"
               >
                 Email
@@ -108,9 +108,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="E-mail"
-                color="primary"
-                area="primary"
-                className="flex w-full justify-center"
+                variants="primary"
               />
               {errors.email && (
                 <FormComponents.Error>
@@ -121,7 +119,7 @@ const Login = () => {
 
             <FormComponents.Container>
               <FormComponents.Label
-                className="flex w-full justify-start md:items-start"
+                variants="primary"
                 htmlFor="password"
               >
                 Password
@@ -132,9 +130,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="password"
-                color="primary"
-                area="primary"
-                className="flex w-full justify-center"
+                variants="primary"
               />
               {errors.password && (
                 <FormComponents.Error>
@@ -147,9 +143,7 @@ const Login = () => {
 
               <Button
                 type="submit"
-                color="primary"
-                size="primary"
-                className="mt-10"
+                variants="primary"
               >
                 Login
               </Button>

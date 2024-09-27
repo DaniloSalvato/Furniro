@@ -2,12 +2,15 @@ import ProfileIcon from "../../../assets/icons/profile.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Logout } from "../../../Auth/firebase";
-import { useAppSelector } from "../../../stores";
+import { useAppDispatch, useAppSelector } from "../../../stores";
+import { logoutUser } from "../../../stores/slices/Users";
 
 const UserMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
 
   const {user} = useAppSelector((state) => state.user);
 
@@ -17,6 +20,7 @@ const UserMenu = () => {
 
   const handleLogout = () => {
     Logout();
+    dispatch(logoutUser())
     navigate("/home");
   };
 
@@ -28,7 +32,7 @@ const UserMenu = () => {
     <>
 
       <img
-        className="block size-6 cursor-pointer transform transition-transform duration-200 hover:scale-105"
+        className="block size-6 cursor-pointer transform transition-transform duration-200 hover:scale-105 rounded-full"
         src={user?.photoURL || ProfileIcon}
         alt="profile-icon"
         onClick={handleOpenMenu}

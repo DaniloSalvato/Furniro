@@ -14,29 +14,28 @@ const ButtonFacebookLogin = () => {
       const result = await FacebookAuth();
       if (result) {
         const newUser = {
-            uid: result.user.uid,
-            displayName: result.user.displayName,
-            email: result.user.email,
-            photoURL: result.user.photoURL,
-            accessToken: await result.user.getIdToken(),
+          uid: result.user.uid,
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+          accessToken: await result.user.getIdToken(),
         };
 
         localStorage.setItem("user", JSON.stringify(newUser));
         return navigate(redirectURL);
       }
     } catch (error) {
-        alert(error);
+      alert(error);
     }
   }
   return (
     <Button
       className="flex justify-center items-center w-full gap-2"
       type="button"
-      color="tertiary"
-      size="primary"
+      variants="tertiary"
       onClick={handleFacebookLogin}
     >
-      <span className="flex flex-nowrap">Login with</span>
+      <span>Login with</span>
       <FaFacebookSquare className="size-5" />
     </Button>
   );
