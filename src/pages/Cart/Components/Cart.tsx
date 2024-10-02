@@ -2,11 +2,10 @@ import { removeFromCart } from "../../../stores/slices/Cart";
 import { useAppDispatch } from "../../../stores";
 import { ItemType } from "../../../stores/slices/Items/type";
 
-import removeIcon from "../../../assets/icons/x.svg"
+import removeIcon from "../../../assets/icons/x.svg";
 
 const Cart = ({ ...props }: ItemType) => {
-  
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   return (
     <div className="flex w-4/5 py-6 ml-4 justify-between items-center">
       <img
@@ -29,13 +28,8 @@ const Cart = ({ ...props }: ItemType) => {
       </div>
 
       <div>
-        <button
-        onClick={() => dispatch(removeFromCart(props.id))}
-        >
-          <img
-            src={removeIcon}
-            alt="remover-icon"
-          />
+        <button onClick={() => dispatch(removeFromCart({ id: props.id }))}>
+          <img src={removeIcon} alt="remover-icon" />
         </button>
       </div>
     </div>

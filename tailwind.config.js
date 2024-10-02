@@ -9,6 +9,8 @@ export default {
           "url('./src/assets/utils/home-img.png')",
         "background-panel":
           "url('./src/assets/utils/process-image.png')",
+        "background-error":
+          "url('./src/assets/utils/error.jpg')",
       },
       blur: {
         xs: "3px",

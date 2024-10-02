@@ -49,6 +49,7 @@ const NumberInput = ({ id, item, showButton }: NumberInputProps) => {
           type="text"
           className="font-poppins font-medium text-base text-center w-12"
           value={qtd}
+          onChange={(e) => setQtd(+(e.target.value))}
           min={1}
         />
         <button

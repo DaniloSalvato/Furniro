@@ -1,22 +1,30 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { cartReducer } from "./slices/Cart";
-import { orderReducer } from "./slices/Orders";
 import { itemsApi } from "./slices/Items";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { useDispatch, useSelector } from "react-redux";
-import { userReducer } from "./slices/Users";
+import { rootReducer } from "./reducers";
+import storage from "redux-persist/lib/storage";
+import persistReducer from "redux-persist/es/persistReducer";
+import { persistStore } from "redux-persist";
 
+const persistConfig = {
+  key: 'root',
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-    order: orderReducer,
-    user:userReducer,
-    [itemsApi.reducerPath]: itemsApi.reducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(itemsApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck:{
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"]
+      }
+    }).concat(itemsApi.middleware),
 });
+
+export const persistor = persistStore(store)
 
 setupListeners(store.dispatch);
 

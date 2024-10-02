@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../stores";
 import { removeFromCart } from "../../../stores/slices/Cart";
 
-import trashIcon from "../../../assets/icons/trash.svg"
+import trashIcon from "../../../assets/icons/trash.svg";
 
 const CartItems = () => {
   const [windowSize, setWindowSize] = useState({
@@ -26,7 +26,7 @@ const CartItems = () => {
     };
   }, []);
 
-  const items  = useAppSelector((state) => state.cart.items);
+  const items = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
 
   return (
@@ -51,7 +51,7 @@ const CartItems = () => {
             </span>
           </section>
           <section className="xl:grid xl:grid-cols-5 xl:w-full xl:items-center xl:justify-center">
-            {items.map((item,index) => (
+            {items.map((item, index) => (
               <Fragment key={index}>
                 <img
                   className="xl:col-span-1 xl:col-start-1 xl:w-20 xl:h-20 xl:rounded-lg xl:m-2"
@@ -76,7 +76,7 @@ const CartItems = () => {
                 </p>
 
                 <img
-                  onClick={() => dispatch(removeFromCart(item.id))}
+                  onClick={() => dispatch(removeFromCart({ id: item.id }))}
                   src={trashIcon}
                   alt="trash"
                   className="xl:col-start-6 xl:h-5 xl:w-5 xl:m-6"
@@ -94,7 +94,7 @@ const CartItems = () => {
               </p>
             </div>
             <div className="flex flex-col w-4/5">
-              {items.map((item,index) => (
+              {items.map((item, index) => (
                 <Fragment key={index}>
                   <div className="flex mt-8">
                     <img
@@ -106,29 +106,30 @@ const CartItems = () => {
 
                     <div className="flex ml-5 sm:ml-20 gap-5 justify-between">
                       <div>
-                      <p className="font-poppins font-semibold text-base sm:text-lg ">
-                        {item.title}
-                      </p>
+                        <p className="font-poppins font-semibold text-base sm:text-lg ">
+                          {item.title}
+                        </p>
 
-                      <p className="font-poppins font-normal text-base text-customBlack-800 sm:mt-3 ">
-                        {formatRupiah(item.value)}
-                      </p>
+                        <p className="font-poppins font-normal text-base text-customBlack-800 sm:mt-3 ">
+                          {formatRupiah(item.value)}
+                        </p>
 
-                      <div className="sm:mt-3">
-                        <NumberInput id={item.id} />
-                      </div>
+                        <div className="sm:mt-3">
+                          <NumberInput id={item.id} />
+                        </div>
 
-                      <p className="mt-2 sm:mt-5 border-t sm:pt-1">
-                        {formatRupiah(item.value * item.quantity)}
-                      </p>
+                        <p className="mt-2 sm:mt-5 border-t sm:pt-1">
+                          {formatRupiah(item.value * item.quantity)}
+                        </p>
                       </div>
                       <img
-                        onClick={() => dispatch(removeFromCart(item.id))}
+                        onClick={() =>
+                          dispatch(removeFromCart({ id: item.id }))
+                        }
                         src={trashIcon}
                         alt="trash"
                         className="sm:ml-10 lg:ml-5 w-1/6"
                       />
-                    
                     </div>
                   </div>
                 </Fragment>
